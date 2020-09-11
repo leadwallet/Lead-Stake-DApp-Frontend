@@ -1,0 +1,27 @@
+@tailwind base;
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url(/fonts/Montserrat/Montserrat-Regular.ttf) format("truetype");
+}
+
+@tailwind components;
+
+body {
+  font-family: "Montserrat";
+  font-style: normal;
+}
+
+.home-gradient {
+  background: transparent linear-gradient(180deg, #12072b 0%, #cc1962 100%) 0%
+    0% no-repeat padding-box;
+  opacity: 1;
+  height: 3000px;
+}
+
+.card-bg {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+@tailwind utilities;
