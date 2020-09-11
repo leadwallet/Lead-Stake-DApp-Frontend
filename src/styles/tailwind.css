@@ -597,6 +597,13 @@ video {
     url(/fonts/Montserrat/Montserrat-Regular.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "Montserrat-ExtraBold";
+
+  src: local("Montserrat-ExtraBold"),
+    url(/fonts/Montserrat/Montserrat-ExtraBold.ttf) format("truetype");
+}
+
 .container {
   width: 100%;
 }
@@ -885,15 +892,43 @@ body {
   font-style: normal;
 }
 
+.font-Montserrat {
+  font-family: "Montserrat";
+  font-style: normal;
+}
+
+.font-Montserrat-ExtraBold {
+  font-family: "Montserrat-ExtraBold";
+  font-style: normal;
+}
+
 .home-gradient {
-  background: transparent linear-gradient(180deg, #12072b 0%, #cc1962 100%) 0%
+  background: transparent linear-gradient(180deg, #12072b 0%, #cc1962 400%) 0%
     0% no-repeat padding-box;
   opacity: 1;
   height: 3000px;
 }
 
 .card-bg {
-  background-color: rgba(255, 255, 255, 0.07);
+  background-color: rgba(0, 0, 0, 0.37);
+}
+
+.footer-bg {
+  background-color: rgba(21, 7, 44, 0.7);
+}
+
+.top-noisy {
+  top: -200px;
+  left: -50px;
+  width: 1400px;
+  max-width: initial;
+}
+
+.second-noisy {
+  top: 1100px;
+  left: -700px;
+  width: 1400px;
+  max-width: initial;
 }
 
 .space-y-0 > :not(template) ~ :not(template) {

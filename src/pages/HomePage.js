@@ -25,7 +25,7 @@ const HomePage = () => {
         <Header />
 
         <div className="container mx-auto mb-48 px-4">
-          <div className="w-full py-6">
+          <div className="w-full py-6 text-center">
             <Button className="w-full md:w-2/5 text-2xl">
               Connect Your Wallet
             </Button>
