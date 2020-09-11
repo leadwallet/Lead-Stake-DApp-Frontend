@@ -15,12 +15,12 @@ const HomePage = () => {
 
       <div className="container mx-auto">
         <div className="w-full py-6">
-          <Button className="w-2/5 text-2xl font-extrabold">
+          <Button className="w-full md:w-2/5 text-2xl font-extrabold">
             Connect Your Wallet
           </Button>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 mt-10">
+        <div className="grid grid-col-1 md:grid-cols-2 gap-6 mt-10">
           <Card title="Total Staked Lead">
             <div className="flex flex-col pt-16 pb-4">
               <div className="text-center">
@@ -76,7 +76,7 @@ const HomePage = () => {
           </Card>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 mt-6">
+        <div className="grid grid-col-1 md:grid-cols-2 gap-6 mt-6">
           <div className="flex flex-row items-center mx-auto">
             <img src="/images/favorite.svg" width="25" alt="" />
             <span className="text-white text-md ml-2">
