@@ -5,7 +5,7 @@ export default () => {
   const size = useWindowSize();
 
   return (
-    <header className="container mx-auto py-4">
+    <header className="container px-4 mx-auto py-4">
       <div className="flex flex-row justify-between items-center">
         <div className="logo flex flex-row items-center">
           <img
@@ -14,7 +14,9 @@ export default () => {
             className="cursor-pointer"
             alt="LEAD"
           />
-          <div className="font-extrabold text-white text-4xl ml-2">LEAD</div>
+          <div className="text-white font-Montserrat-ExtraBold text-4xl ml-2">
+            LEAD
+          </div>
         </div>
         <div className="cursor-pointer">
           <img src="/images/hamburgar.svg" width="40" alt="hamburgar" />
