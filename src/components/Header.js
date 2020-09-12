@@ -1,9 +1,6 @@
 import React from "react";
-import useWindowSize from "../hooks/useWindowSize";
 
 export default () => {
-  const size = useWindowSize();
-
   return (
     <header className="container px-4 mx-auto py-4">
       <div className="flex flex-row justify-between items-center">

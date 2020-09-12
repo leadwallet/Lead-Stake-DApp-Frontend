@@ -1,9 +1,6 @@
 import React from "react";
-import useWindowSize from "../hooks/useWindowSize";
 
 export default () => {
-  const size = useWindowSize();
-
   return (
     <div className="py-8 footer-bg">
       <footer className="container mx-auto px-4">

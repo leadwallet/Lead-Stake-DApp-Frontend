@@ -13,8 +13,16 @@ const HomePage = () => {
   return (
     <div className="w-full overflow-hidden">
       <div className="relative z-20 w-full top-0">
-        <img src="/images/nosiy.png" className="absolute z-10 top-noisy" />
-        <img src="/images/nosiy.png" className="absolute z-10 second-noisy" />
+        <img
+          src="/images/nosiy.png"
+          alt=""
+          className="absolute z-10 top-noisy"
+        />
+        <img
+          src="/images/nosiy.png"
+          alt=""
+          className="absolute z-10 second-noisy"
+        />
       </div>
 
       <div className="relative z-10 w-full top-0">
