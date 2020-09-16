@@ -12,7 +12,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.1",
     "rimraf": "^3.0.2",
-    "tailwindcss": "^1.2.0"
+    "tailwindcss": "^1.2.0",
+    "web3": "^1.2.11"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.149",
@@ -43,5 +44,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hendobox/Lead-Stake-DApp-Frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hendobox/Lead-Stake-DApp-Frontend/issues"
+  },
+  "homepage": "https://github.com/Hendobox/Lead-Stake-DApp-Frontend#readme"
 }
