@@ -6,15 +6,14 @@ import Card from "../components/common/Card";
 import { initWeb3, initLeadStake } from "../utils.js";
 
 const HomePage = () => {
-  return <div>Hello world</div>
-  const [web3, setWeb3] = useState(undefined);
-  const [accounts, setAccounts] = useState(undefined);
-  const [leadStake, setLeadStake] = useState(undefined);
-  const [totalStakeholders, setTotalStakeholders] = useState(undefined);
-  const [totalStaked, setTotalStaked] = useState(undefined);
-  const [stakes, setStakes] = useState(undefined);
-  const [stakeRewards, setStakeRewards] = useState(undefined);
-  const [minStake, setMinStake] = useState(undefined);
+  const [web3, setWeb3] = useState();
+  const [accounts, setAccounts] = useState();
+  const [leadStake, setLeadStake] = useState();
+  const [totalStakeholders, setTotalStakeholders] = useState();
+  const [totalStaked, setTotalStaked] = useState();
+  const [stakes, setStakes] = useState();
+  const [stakeRewards, setStakeRewards] = useState();
+  const [minStake, setMinStake] = useState();
 
   useEffect(() => {
     const init = async () => {
@@ -32,21 +31,20 @@ const HomePage = () => {
       setMinStake(minStake);
     };
     init();
-    window.ethereum.on('accountsChanged', accounts => {
-      setAccounts(accounts);
-    });
+
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", (accounts) => {
+        setAccounts(accounts);
+      });
+    }
   }, []);
 
   const isReady = () => {
-    return (
-      typeof leadStake !== 'undefined' 
-      && typeof web3 !== 'undefined'
-      && typeof accounts !== 'undefined'
-    );
-  }
+    return !!leadStake && !!web3 && !!accounts;
+  };
 
   useEffect(() => {
-    if(isReady()) {
+    if (isReady()) {
       updateStakes();
       updateStakeRewards();
       updateTotalStaked();
@@ -76,8 +74,8 @@ const HomePage = () => {
   }
 
   //async function stakingTaxRate() {
-   // const tax = await leadStake.methods.stakingTaxRate().call();
-   // return tax;
+  // const tax = await leadStake.methods.stakingTaxRate().call();
+  // return tax;
   //}
 
   //async function registrationTax() {
@@ -101,21 +99,21 @@ const HomePage = () => {
   //}
 
   //async function registerAndStake(e) {
-    //e.preventDefault();
-    //const amount = e.target.element[0].value;
-    //const referrer = e.target.element[1].value;
-    //if(!referrer || referrer.length !== 42 ) referrer = '0x0000000000000000000000000000000000000000'
-    //await leadStake.methods.registerAndStake(amount, referrer).send({from: accounts[0]});
-    //updateStakes();
-    //updateTotalStaked();
-    //updateTotalStakeholders();
-    //updateBalance();
+  //e.preventDefault();
+  //const amount = e.target.element[0].value;
+  //const referrer = e.target.element[1].value;
+  //if(!referrer || referrer.length !== 42 ) referrer = '0x0000000000000000000000000000000000000000'
+  //await leadStake.methods.registerAndStake(amount, referrer).send({from: accounts[0]});
+  //updateStakes();
+  //updateTotalStaked();
+  //updateTotalStakeholders();
+  //updateBalance();
   //}
 
   async function stake(e) {
     e.preventDefault();
     const amount = e.target.element[0].value;
-    await leadStake.methods.stake(amount).send({from: accounts[0]});
+    await leadStake.methods.stake(amount).send({ from: accounts[0] });
     updateStakes();
     updateTotalStaked();
   }
@@ -123,16 +121,15 @@ const HomePage = () => {
   async function unstake(e) {
     e.preventDefault();
     const amount = e.target.element[0].value;
-    await leadStake.methods.unstake(amount).send({from: accounts[0]});
+    await leadStake.methods.unstake(amount).send({ from: accounts[0] });
     updateStakes();
   }
 
   async function withdrawEarnings(e) {
     e.preventDefault();
-    await leadStake.methods.withdrawEarnings().send({from: accounts[0]});
+    await leadStake.methods.withdrawEarnings().send({ from: accounts[0] });
     updateStakeRewards();
   }
-
 
   return (
     <div className="w-full overflow-hidden">
@@ -189,7 +186,11 @@ const HomePage = () => {
                   <span className="text-white text-2xl ml-2">LEAD</span>
                 </div>
                 <div className="rounded-md border-2 border-primary p-2 flex justify-end">
-                  <Button type="submit" className="flex flex-row items-center" onClick={stake}>
+                  <Button
+                    type="submit"
+                    className="flex flex-row items-center"
+                    onClick={stake}
+                  >
                     <img src="/images/locked.svg" width="25" alt="" />
                     <span className="w-32">STAKE</span>
                   </Button>
@@ -207,7 +208,11 @@ const HomePage = () => {
                   <div className="text-white text-lg font-thin ml-3">
                     Lead To Stake
                   </div>
-                  <Button type="submit" className="flex flex-row items-center" onClick={withdrawEarnings}>
+                  <Button
+                    type="submit"
+                    className="flex flex-row items-center"
+                    onClick={withdrawEarnings}
+                  >
                     <img src="/images/unlocked.svg" width="25" alt="" />
                     <span className="w-32">WITHDRAW</span>
                   </Button>
@@ -225,7 +230,11 @@ const HomePage = () => {
                   <div className="text-white text-lg font-thin ml-3">
                     Lead To Stake
                   </div>
-                  <Button type="submit" className="flex flex-row items-center" onClick={unstake}>
+                  <Button
+                    type="submit"
+                    className="flex flex-row items-center"
+                    onClick={unstake}
+                  >
                     <img src="/images/unlocked.svg" width="25" alt="" />
                     <span className="w-32">WITHDRAW</span>
                   </Button>
