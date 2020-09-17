@@ -22,9 +22,10 @@ const initWeb3 = () => {
 };
 
 const initLeadStake = async () => {
-    const networkId = await Web3.eth.net.getId();
+    const web3 = window.web3;
+    const networkId = await web3.eth.net.getId();
     const deployedNetwork = await LeadStake.networks[networkId];
-    return new Web3.eth.Contract(LeadStake.abi, deployedNetwork && deployedNetwork.address);
+    return new web3.eth.Contract(LeadStake.abi, deployedNetwork && deployedNetwork.address);
 };
 
 export { initWeb3, initLeadStake };
