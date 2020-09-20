@@ -5,11 +5,13 @@ import Button from "../components/common/Button";
 import Card from "../components/common/Card";
 import { initWeb3 } from "../utils.js";
 import LeadStake from '../contracts/LeadStake.json';
+import ERC20 from '../contracts/ERC20.json';
 
 const HomePage = () => {
   const [web3, setWeb3] = useState();
   const [accounts, setAccounts] = useState(undefined);
   const [leadStake, setLeadStake] = useState(undefined);
+  const [leadToken, setLeadToken] = useState(undefined);
   const [totalStaked, setTotalStaked] = useState(undefined);
   const [stakes, setStakes] = useState(undefined);
   const [minStake, setMinStake] = useState(undefined);
@@ -22,14 +24,16 @@ const HomePage = () => {
   const [stakingRewards, setStakeRewards] = useState(undefined);
   const [minRegister, setMinRegister] = useState(undefined);
   const [totalRewards, setTotalRewards] = useState(undefined);
+  const [registeredStatus, setRegisteredStaus] = useState(undefined);
 
   useEffect(() => {
     const init = async () => {
       const web3 = await initWeb3();
       const accounts = await web3.eth.getAccounts();
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = LeadStake.networks[networkId];
-      const leadStake = new web3.eth.Contract(LeadStake.abi, deployedNetwork && deployedNetwork.address);
+      //const networkId = await web3.eth.net.getId();
+      //const deployedNetwork = LeadStake.networks[networkId];
+      const leadStake = new web3.eth.Contract(LeadStake.abi, '0xFE9aFe28F5347C979e07686B2A42Afed8D4C8675'); //ropsten testnet adddress
+      const leadToken = new web3.eth.Contract(ERC20.abi, '0x9703e8b35f13f2835c4a0f60fe9f9993e3a45e30'); //ropsten testnet address
       const totalStaked = await leadStake.methods.totalStaked().call();
       const minStake = await leadStake.methods.minimumStakeValue().call();
       const stakingTax = await leadStake.methods.stakingTaxRate().call();
@@ -38,9 +42,10 @@ const HomePage = () => {
       const referralRewards = await leadStake.methods.referralRewards(accounts[0]).call();
       const referralCount = await leadStake.methods.referralCount(accounts[0]).call();
       const weeklyROI = await leadStake.methods.weeklyROI().call();
-      setWeb3(web3);
+      const status = await leadStake.methods.registered(accounts[0]).call();
       setAccounts(accounts);
       setLeadStake(leadStake);
+      setLeadToken(leadToken);
       setTotalStaked(totalStaked);
       setMinStake(minStake);
       setStakingTax(stakingTax);
@@ -49,14 +54,12 @@ const HomePage = () => {
       setReferralRewards(referralRewards);
       setReferralCount(referralCount);
       setWeeklyROI(weeklyROI);
+      setRegisteredStaus(status);
     };
     init();
-
-    if (window.ethereum) {
       window.ethereum.on("accountsChanged", (accounts) => {
         setAccounts(accounts);
       });
-    }
   }, []);
 
   const isReady = () => {
@@ -66,7 +69,6 @@ const HomePage = () => {
   useEffect(() => {
     if (isReady()) {
       updateStakes();
-      updateStakeRewards();
       updateTotalStaked();
       stakeRewards();
       minRegisteration();
@@ -78,11 +80,6 @@ const HomePage = () => {
     const stake = await leadStake.methods.stakes(accounts[0]).call();
     await setStakes(stake);
     return stake;
-  }
-
-  async function updateStakeRewards() {
-    const rewards = await leadStake.methods.stakeRewards(accounts[0]).call();
-    return rewards;
   }
 
   async function updateTotalStakeholders() {
@@ -111,11 +108,6 @@ const HomePage = () => {
     return sum;
   }
 
-  async function registered() {
-    const status = await leadStake.methods.registered(accounts[0]).call();
-    return status;
-  }
-
   async function totalReward() {
     const weekly = parseInt(await leadStake.methods.calculateEarnings(accounts[0]).call());
     const stake = parseInt(await leadStake.methods.stakeRewards(accounts[0]).call());
@@ -129,6 +121,7 @@ const HomePage = () => {
     e.preventDefault();
     const amount = e.target.element[0].value;
     let referrer = e.target.element[1].value;
+    await leadToken.methods.approve('0xFE9aFe28F5347C979e07686B2A42Afed8D4C8675', amount).send({from: accounts[0]});
     if(!referrer || referrer.length !== 42 ) referrer = '0x0000000000000000000000000000000000000000'
     await leadStake.methods.registerAndStake(amount, referrer).send({from: accounts[0]});
     await updateStakes();
@@ -139,6 +132,7 @@ const HomePage = () => {
   async function stake(e) {
     e.preventDefault();
     const amount = e.target.element[0].value;
+    await leadToken.methods.approve('0xFE9aFe28F5347C979e07686B2A42Afed8D4C8675', amount).send({from: accounts[0]});
     await leadStake.methods.stake(amount).send({ from: accounts[0] });
     await updateStakes();
     await updateTotalStaked();
@@ -154,7 +148,11 @@ const HomePage = () => {
   async function withdrawEarnings(e) {
     e.preventDefault();
     await leadStake.methods.withdrawEarnings().send({ from: accounts[0] });
-    updateStakeRewards();
+    await stakeRewards();
+  }
+
+  if(!web3) {
+    return <div>Loading page...</div>;
   }
 
   return (
@@ -185,8 +183,8 @@ const HomePage = () => {
               Connect Your Wallet
             </Button>
           </div>
-
           <div className="grid grid-col-1 md:grid-cols-2 gap-6 mt-10">
+
             <Card title="Stats">
               <div className="flex flex-col pt-8 px-2">
                 <div className="text-left pb-8">
@@ -217,7 +215,7 @@ const HomePage = () => {
               </div>
             </Card>      
             
-            {!registered ? (
+            {!registeredStatus ? (
 
             <Card title="Minimum Stake">
               <div className="flex flex-col pt-8 px-2">
