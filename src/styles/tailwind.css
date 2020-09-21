@@ -598,6 +598,13 @@ video {
 }
 
 @font-face {
+  font-family: "Montserrat-Black";
+
+  src: local("Montserrat-Black"),
+    url(/fonts/Montserrat/Montserrat-Black.ttf) format("truetype");
+}
+
+@font-face {
   font-family: "Montserrat-ExtraBold";
 
   src: local("Montserrat-ExtraBold"),
@@ -902,11 +909,56 @@ body {
   font-style: normal;
 }
 
+.Montserrat-Black {
+  font-family: "Montserrat-Black";
+  font-style: normal;
+}
+
+.intro-video {
+  max-width: 560px;
+  height: 315px;
+  width: 100%;
+}
+
+@media (max-width: 360px) {
+  .intro-video {
+    height: 180px;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 480px) {
+  .intro-video {
+    height: 280px;
+  }
+}
+
 .home-gradient {
-  background: transparent linear-gradient(180deg, #12072b 0%, #cc1962 400%) 0%
+  background: transparent linear-gradient(180deg, #12072b 0%, #cc1962 100%) 0%
+    0% no-repeat padding-box;
+  opacity: 1;
+  height: 8000px;
+}
+
+.contactus-gradient {
+  background: transparent linear-gradient(180deg, #12072b 0%, #cc1962 100%) 0%
     0% no-repeat padding-box;
   opacity: 1;
   height: 3000px;
+}
+
+.force-height {
+  min-height: calc(100vh - 350px);
+}
+
+.token-gradient {
+  background: transparent linear-gradient(180deg, #12072b 0%, #cc1962 100%) 0%
+    0% no-repeat padding-box;
+  opacity: 1;
+  height: 6000px;
+}
+
+.input-bg {
+  background-color: rgba(255, 255, 255, 0.22);
 }
 
 .card-bg {
@@ -929,6 +981,85 @@ body {
   left: -700px;
   width: 1400px;
   max-width: initial;
+}
+
+.third-noisy {
+  transform: rotate(180deg);
+  top: 1300px;
+  right: -700px;
+  width: 1400px;
+  max-width: initial;
+}
+
+.fourth-noisy {
+  top: 3000px;
+  left: -50px;
+  width: 1400px;
+  max-width: initial;
+}
+
+.bottom-noisy {
+  top: 2800px;
+  left: -700px;
+  width: 1400px;
+  max-width: initial;
+}
+
+.fifth-noisy {
+  transform: rotate(180deg);
+  top: 4500px;
+  right: -200px;
+  width: 1400px;
+  max-width: initial;
+}
+
+.menu {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+
+.line {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 6;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line1 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+
+.line2 {
+  stroke-dasharray: 60 60;
+  stroke-width: 6;
+}
+
+.line3 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+
+.opened .line1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+
+.opened .line2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+  stroke-width: 6;
+}
+
+.opened .line3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
 }
 
 .space-y-0 > :not(template) ~ :not(template) {

@@ -10,6 +10,7 @@ import ERC20 from "../contracts/ERC20.json";
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [web3, setWeb3] = useState();
   const [accounts, setAccounts] = useState();
   const [leadStake, setLeadStake] = useState();
@@ -29,6 +30,10 @@ const HomePage = () => {
   const [registeredStatus, setRegisteredStaus] = useState();
 
   const init = async () => {
+    if (isReady()) {
+      return;
+    }
+
     setLoading(true);
     let web3;
     try {
@@ -39,13 +44,14 @@ const HomePage = () => {
       return;
     }
 
-    console.log(web3);
-
     const accounts = await web3.eth.getAccounts();
 
-    console.log(accounts[0]);
     const networkId = await web3.eth.net.getId();
-    console.log(networkId);
+    if (networkId != 3) {
+      setError("Please connect Ropsten Test Network account");
+      setLoading(false);
+      return;
+    }
     const deployedNetwork = LeadStake.networks[networkId];
     const leadStake = new web3.eth.Contract(
       LeadStake.abi,
@@ -222,10 +228,14 @@ const HomePage = () => {
           <div className="w-full py-6 text-center">
             <Button
               className="w-full md:w-3/5 text-2xl flex flex-row justify-center mx-auto"
+              uppercase={false}
               onClick={async () => await init()}
             >
               {loading && <Spinner color="white" size={40} />}
-              {!loading && (!accounts ? "Connect Your Wallet" : accounts[0])}
+              {!loading && error !== "" && error}
+              {!loading &&
+                error === "" &&
+                (!accounts ? "CONNECT YOUR WALLET" : accounts[0])}
             </Button>
           </div>
           <div className="grid grid-col-1 md:grid-cols-2 gap-6 mt-10">
