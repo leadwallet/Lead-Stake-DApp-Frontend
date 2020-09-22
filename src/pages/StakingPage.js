@@ -262,17 +262,16 @@ const HomePage = () => {
       await leadStake.methods
         .unstake(unstakeAmount)
         .send({ from: accounts[0] });
-      await updateStakes();
+      await updateAll();
     } catch (err) {
       console.error(err);
     }
     setUnstakeLoading(false);
   }
 
-  async function withdrawEarnings(e) {
-    e.preventDefault();
+  async function withdrawEarnings() {
     await leadStake.methods.withdrawEarnings().send({ from: accounts[0] });
-    await stakeRewards();
+    await updateAll();
   }
 
   return (
@@ -466,7 +465,7 @@ const HomePage = () => {
                     <Button
                       type="submit"
                       className="flex flex-row items-center w-32"
-                      onClick={withdrawEarnings}
+                      onClick={() => withdrawEarnings()}
                     >
                       <img src="/images/unlocked.svg" width="25" alt="" />
                       <span className="w-24">CLAIM</span>
