@@ -947,7 +947,7 @@ body {
 }
 
 .force-height {
-  min-height: calc(100vh - 350px);
+  min-height: calc(100vh - 318px);
 }
 
 .token-gradient {

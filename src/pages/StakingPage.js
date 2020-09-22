@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Button from "../components/common/Button";
+import Modal from "../components/common/Modal";
 import Card from "../components/common/Card";
 import Spinner from "../components/common/Spinner";
 import { initWeb3 } from "../utils.js";
@@ -12,6 +13,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const [stakeLoading, setStakeLoading] = useState(false);
   const [unstakeLoading, setUnstakeLoading] = useState(false);
+  const [withdrawLoading, setWithdrawLoading] = useState(false);
   const [error, setError] = useState("");
   const [web3, setWeb3] = useState();
   const [accounts, setAccounts] = useState();
@@ -36,6 +38,8 @@ const HomePage = () => {
   const [amount, setAmount] = useState();
   const [unstakeAmount, setUnstakeAmount] = useState();
   const [referrer, setReferrer] = useState();
+
+  const [showModal, setShowModal] = useState(false);
 
   const init = async () => {
     if (isReady()) {
@@ -132,10 +136,10 @@ const HomePage = () => {
       updateTotalSupply(),
       updateAccountBalance(),
       updateTotalStaked(),
-      updateTotalStakeholders(),
       stakeRewards(),
       minRegisteration(),
       totalReward(),
+      updateReferrals(),
     ]);
   }
 
@@ -151,6 +155,19 @@ const HomePage = () => {
     return stake;
   }
 
+  async function updateReferrals() {
+    if (leadToken) {
+      const referralRewards = await leadStake.methods
+        .referralRewards(accounts[0])
+        .call();
+      const referralCount = await leadStake.methods
+        .referralCount(accounts[0])
+        .call();
+      setReferralRewards(referralRewards);
+      setReferralCount(referralCount);
+    }
+  }
+
   async function updateAccountBalance() {
     if (leadToken) {
       const balance = await leadToken.methods.balanceOf(accounts[0]).call();
@@ -164,13 +181,6 @@ const HomePage = () => {
       const totalSupply = await leadToken.methods.totalSupply().call();
       setTotalSupply(totalSupply);
       return totalSupply;
-    }
-  }
-
-  async function updateTotalStakeholders() {
-    if (leadStake) {
-      const stakeholders = await leadStake.methods.stakeholders().call();
-      return stakeholders.length;
     }
   }
 
@@ -236,6 +246,9 @@ const HomePage = () => {
         .send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
+      if (err.code !== 4001) {
+        setShowModal(true);
+      }
       console.error(err);
     }
     setStakeLoading(false);
@@ -250,32 +263,77 @@ const HomePage = () => {
       await leadStake.methods.stake(amount).send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
+      if (err.code !== 4001) {
+        setShowModal(true);
+      }
       console.error(err);
     }
     setStakeLoading(false);
   }
 
   async function unstake() {
+    if (parseFloat(stakes) === 0) {
+      console.error("You don't have any staked LEADs yet!");
+      return;
+    }
     setUnstakeLoading(true);
-    // TODO compare current value and unstaked value
     try {
       await leadStake.methods
         .unstake(unstakeAmount)
         .send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
+      if (err.code !== 4001) {
+        setShowModal(true);
+      }
       console.error(err);
     }
     setUnstakeLoading(false);
   }
 
   async function withdrawEarnings() {
-    await leadStake.methods.withdrawEarnings().send({ from: accounts[0] });
-    await updateAll();
+    if (parseFloat(totalRewards) === 0) {
+      console.error("No earnings yet!");
+      return;
+    }
+    setWithdrawLoading(true);
+    try {
+      await leadStake.methods.withdrawEarnings().send({ from: accounts[0] });
+      await updateAll();
+    } catch (err) {
+      if (err.code !== 4001) {
+        setShowModal(true);
+      }
+      console.error(err);
+    }
+    setWithdrawLoading(false);
   }
 
   return (
     <div className="w-full overflow-hidden">
+      {showModal && (
+        <Modal title="" onClose={() => setShowModal(false)}>
+          <div className="text-2xl mb-2">
+            Error! Your transaction has been reverted!
+          </div>
+          <div>1. Please check your account and retry again...</div>
+          <div>
+            2. If you staked, unstaked or withdrew within 7 days, you have to
+            wait for 7 days to make transactions with LEAD token.
+          </div>
+
+          <div className="my-2">
+            Thanks for your support and feel free to{" "}
+            <a href="https://leadwallet.io/contactus" className="text-blue-500">
+              contact us
+            </a>
+          </div>
+
+          <div className="flex flex-row justify-center">
+            <Button onClick={() => setShowModal(false)}>Close</Button>
+          </div>
+        </Modal>
+      )}
       <div className="relative z-20 w-full top-0">
         <img
           src="/images/nosiy.png"
@@ -464,11 +522,17 @@ const HomePage = () => {
                   <div className="flex flex-row justify-center">
                     <Button
                       type="submit"
-                      className="flex flex-row items-center w-32"
+                      className="flex flex-row items-center justify-center w-32"
                       onClick={() => withdrawEarnings()}
                     >
-                      <img src="/images/unlocked.svg" width="25" alt="" />
-                      <span className="w-24">CLAIM</span>
+                      {withdrawLoading ? (
+                        <Spinner size={30} />
+                      ) : (
+                        <>
+                          <img src="/images/unlocked.svg" width="25" alt="" />
+                          <span className="w-24">CLAIM</span>{" "}
+                        </>
+                      )}
                     </Button>
                   </div>
                   <div className="text-center text-white text-2xl mt-8 mx-2">
