@@ -32,7 +32,7 @@ const HomePage = () => {
       const accounts = await web3.eth.getAccounts();
       //const networkId = await web3.eth.net.getId();
       //const deployedNetwork = LeadStake.networks[networkId];
-      const leadStake = new web3.eth.Contract(LeadStake.abi, '0xFE9aFe28F5347C979e07686B2A42Afed8D4C8675'); //ropsten testnet adddress
+      const leadStake = new web3.eth.Contract(LeadStake.abi, '0x0f08f485d6cbf2e1d51c7b5e9e3a5ed347f3871a'); //ropsten testnet adddress
       const leadToken = new web3.eth.Contract(ERC20.abi, '0x9703e8b35f13f2835c4a0f60fe9f9993e3a45e30'); //ropsten testnet address
       const totalStaked = await leadStake.methods.totalStaked().call();
       const minStake = await leadStake.methods.minimumStakeValue().call();
