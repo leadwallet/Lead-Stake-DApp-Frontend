@@ -29,7 +29,7 @@ const HomePage = () => {
   const [registrationTax, setRegistrationTax] = useState();
   const [referralRewards, setReferralRewards] = useState();
   const [referralCount, setReferralCount] = useState();
-  const [weeklyROI, setWeeklyROI] = useState();
+  const [dailyROI, setDailyROI] = useState();
   const [stakingRewards, setStakeRewards] = useState();
   const [minRegister, setMinRegister] = useState();
   const [totalRewards, setTotalRewards] = useState();
@@ -73,7 +73,7 @@ const HomePage = () => {
 
     const leadStake = new web3.eth.Contract(
       LeadStake.abi,
-      "0xFE9aFe28F5347C979e07686B2A42Afed8D4C8675"
+      "0x0f08f485d6cbf2e1d51c7b5e9e3a5ed347f3871a"
     ); //ropsten testnet adddress
     const totalStaked = await leadStake.methods.totalStaked().call();
     const minStake = await leadStake.methods.minimumStakeValue().call();
@@ -86,7 +86,7 @@ const HomePage = () => {
     const referralCount = await leadStake.methods
       .referralCount(accounts[0])
       .call();
-    const weeklyROI = await leadStake.methods.weeklyROI().call();
+    const dailyROI = await leadStake.methods.dailyROI().call();
     const status = await leadStake.methods.registered(accounts[0]).call();
 
     setWeb3(web3);
@@ -102,7 +102,7 @@ const HomePage = () => {
     setRegistrationTax(registrationTax);
     setReferralRewards(referralRewards);
     setReferralCount(referralCount);
-    setWeeklyROI(weeklyROI);
+    setDailyROI(dailyROI);
     setRegisteredStaus(status);
 
     window.ethereum.on("accountsChanged", (accounts) => {
@@ -208,17 +208,17 @@ const HomePage = () => {
       const rewards = parseInt(
         await leadStake.methods.stakeRewards(accounts[0]).call()
       );
-      const weekly = parseInt(
+      const daily = parseInt(
         await leadStake.methods.calculateEarnings(accounts[0]).call()
       );
-      const sum = rewards + weekly;
+      const sum = rewards + daily;
       await setStakeRewards(sum);
       return sum;
     }
   }
 
   async function totalReward() {
-    const weekly = parseInt(
+    const daily = parseInt(
       await leadStake.methods.calculateEarnings(accounts[0]).call()
     );
     const stake = parseInt(
@@ -227,7 +227,7 @@ const HomePage = () => {
     const referral = parseInt(
       await leadStake.methods.referralRewards(accounts[0]).call()
     );
-    const sum = stake + referral + weekly;
+    const sum = stake + referral + daily;
     await setTotalRewards(sum);
     return sum;
   }
@@ -237,7 +237,7 @@ const HomePage = () => {
     try {
       let ref = referrer;
       await leadToken.methods
-        .approve("0xFE9aFe28F5347C979e07686B2A42Afed8D4C8675", amount)
+        .approve("0x0f08f485d6cbf2e1d51c7b5e9e3a5ed347f3871a", amount)
         .send({ from: accounts[0] });
       if (!ref || ref.length !== 42)
         ref = "0x0000000000000000000000000000000000000000";
@@ -258,7 +258,7 @@ const HomePage = () => {
     setStakeLoading(true);
     try {
       await leadToken.methods
-        .approve("0xFE9aFe28F5347C979e07686B2A42Afed8D4C8675", amount)
+        .approve("0x0f08f485d6cbf2e1d51c7b5e9e3a5ed347f3871a", amount)
         .send({ from: accounts[0] });
       await leadStake.methods.stake(amount).send({ from: accounts[0] });
       await updateAll();
@@ -545,9 +545,9 @@ const HomePage = () => {
                       </div>
                       <div>
                         <span className="text-gray-400 text-lg">
-                          Weekly Return:{" "}
+                          Daily Return:{" "}
                         </span>
-                        {weeklyROI} %
+                        {dailyROI} %
                       </div>
                     </div>
                     <div>
