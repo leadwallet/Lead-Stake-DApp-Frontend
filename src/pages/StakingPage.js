@@ -34,11 +34,9 @@ const HomePage = () => {
   const [minRegister, setMinRegister] = useState();
   const [totalRewards, setTotalRewards] = useState();
   const [registeredStatus, setRegisteredStaus] = useState();
-
   const [amount, setAmount] = useState();
   const [unstakeAmount, setUnstakeAmount] = useState();
   const [referrer, setReferrer] = useState();
-
   const [showModal, setShowModal] = useState(false);
 
   const init = async () => {
@@ -73,7 +71,7 @@ const HomePage = () => {
 
     const leadStake = new web3.eth.Contract(
       LeadStake.abi,
-      "0x0f08f485d6cbf2e1d51c7b5e9e3a5ed347f3871a"
+      "0xaf90cdc22b7cfe2e8a42b346150840f5d62d4ba2"
     ); //ropsten testnet adddress
     const totalStaked = await leadStake.methods.totalStaked().call();
     const minStake = await leadStake.methods.minimumStakeValue().call();
@@ -208,26 +206,26 @@ const HomePage = () => {
       const rewards = parseInt(
         await leadStake.methods.stakeRewards(accounts[0]).call()
       );
-      const daily = parseInt(
+      const owing = parseInt(
         await leadStake.methods.calculateEarnings(accounts[0]).call()
       );
-      const sum = rewards + daily;
+      const sum = rewards + owing;
       await setStakeRewards(sum);
       return sum;
     }
   }
 
   async function totalReward() {
-    const daily = parseInt(
+    const owing = parseInt(
       await leadStake.methods.calculateEarnings(accounts[0]).call()
     );
-    const stake = parseInt(
+    const recorded = parseInt(
       await leadStake.methods.stakeRewards(accounts[0]).call()
     );
     const referral = parseInt(
       await leadStake.methods.referralRewards(accounts[0]).call()
     );
-    const sum = stake + referral + daily;
+    const sum = owing + referral + recorded;
     await setTotalRewards(sum);
     return sum;
   }
@@ -237,7 +235,7 @@ const HomePage = () => {
     try {
       let ref = referrer;
       await leadToken.methods
-        .approve("0x0f08f485d6cbf2e1d51c7b5e9e3a5ed347f3871a", amount)
+        .approve("0xaf90cdc22b7cfe2e8a42b346150840f5d62d4ba2", amount)
         .send({ from: accounts[0] });
       if (!ref || ref.length !== 42)
         ref = "0x0000000000000000000000000000000000000000";
@@ -258,7 +256,7 @@ const HomePage = () => {
     setStakeLoading(true);
     try {
       await leadToken.methods
-        .approve("0x0f08f485d6cbf2e1d51c7b5e9e3a5ed347f3871a", amount)
+        .approve("0xaf90cdc22b7cfe2e8a42b346150840f5d62d4ba2", amount)
         .send({ from: accounts[0] });
       await leadStake.methods.stake(amount).send({ from: accounts[0] });
       await updateAll();
@@ -317,10 +315,7 @@ const HomePage = () => {
             Error! Your transaction has been reverted!
           </div>
           <div>1. Please check your account and retry again...</div>
-          <div>
-            2. If you staked, unstaked or withdrew within 7 days, you have to
-            wait for 7 days to make transactions with LEAD token.
-          </div>
+          <div>2. Your referrer's address is a registered member if any</div>
 
           <div className="my-2">
             Thanks for your support and feel free to{" "}
@@ -402,13 +397,13 @@ const HomePage = () => {
                         <li>
                           Staking Fee:{"  "}
                           <span className="text-white text-2xl">
-                            {stakingTax} %
+                            {parseFloat(stakingTax) / 10} %
                           </span>
                         </li>
                         <li>
                           Unstaking Fee:{"  "}
                           <span className="text-white text-2xl">
-                            {unstakingTax} %
+                            {parseFloat(unstakingTax) / 10} %
                           </span>
                         </li>
                         <li>
@@ -547,7 +542,7 @@ const HomePage = () => {
                         <span className="text-gray-400 text-lg">
                           Daily Return:{" "}
                         </span>
-                        {dailyROI} %
+                        {parseFloat(dailyROI) / 100} %
                       </div>
                     </div>
                     <div>
