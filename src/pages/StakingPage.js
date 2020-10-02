@@ -44,7 +44,7 @@ const HomePage = () => {
       return;
     }
 
-    setLoading(true);
+    setLoading(true); 
     let web3;
     try {
       web3 = await initWeb3();
@@ -352,6 +352,7 @@ const HomePage = () => {
         <div className="container mx-auto pb-24 px-4 force-height">
           {!accounts && (
             <div className="w-full py-6 text-center">
+              
               <Button
                 className="w-full md:w-2/5 text-2xl flex flex-row justify-center mx-auto"
                 uppercase={false}
@@ -360,7 +361,49 @@ const HomePage = () => {
                 {loading && <Spinner color="white" size={40} />}
                 {!loading && (error !== "" ? error : "CONNECT YOUR WALLET")}
               </Button>
-            </div>
+              <br/>
+              <div>
+                <img  
+                  className="w-full md:w-2/6 flex flex-row justify-center mx-auto"
+                  src="/images/metamask1.png" alt="" width="50" />
+              </div>
+              <div className="grid grid-col-1 md:grid-cols-2 gap-6 mt-10">  
+                <Card title="Rules">
+                  <div className="flex flex-col pt-8 pb-4 text-white text-center">
+                     <ul>
+                        <li>
+                          1. Connect your MetaMask wallet to participate
+                        </li>
+                        <li>
+                          2. Stake LEAD tokens and earn daily returns from allocated pool
+                        </li>
+                        <li>
+                          3. Withdraw earned rewards anytime
+                        </li>
+                        <li>
+                          4. Unsake LEAD tokens anytime
+                        </li>
+                        <li>
+                          5. Earn extra rewards by referring new members
+                        </li>
+                      </ul>
+                  </div>
+                </Card>
+
+                <Card title="Disclaimer">
+                  <div className="flex flex-col pt-8 px-2">
+                    <div className="text-center pb-4">
+                      <div className="text-white">
+                        This project was audited by{" "}
+                        <a href="https://immunebytes.com/" className="text-blue-500">
+                          Immune Bytes
+                        </a> and does not provide any guarantee. Use at your own risk.
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </div>            
           )}
           {accounts && (
             <div className="grid grid-col-1 md:grid-cols-2 gap-6 mt-10">
