@@ -359,15 +359,10 @@ const HomePage = () => {
                 onClick={async () => await init()}
               >
                 {loading && <Spinner color="white" size={40} />}
-                {!loading && (error !== "" ? error : "CONNECT YOUR WALLET")}
+                {!loading && (error !== "" ? error : "CONNECT METAMASK WALLET")}
               </Button>
-              <br/>
-              <div>
-                <img  
-                  className="w-full md:w-2/6 flex flex-row justify-center mx-auto"
-                  src="/images/metamask1.png" alt="" width="50" />
-              </div>
-              <div className="grid grid-col-1 md:grid-cols-2 gap-6 mt-10">  
+              //w-full md:w-3/6 text-2xl flex flex-row justify-center mx-auto
+              <div className="w-full md:w-3/6 justify-center mx-auto ">  
                 <Card title="Rules">
                   <div className="flex flex-col pt-8 pb-4 text-white text-center">
                      <ul>
@@ -389,15 +384,18 @@ const HomePage = () => {
                       </ul>
                   </div>
                 </Card>
-
+                <div className="flex flex-col pt-8 px-2">
+                  <br/><br/><br/><br/>
+                </div>
                 <Card title="Disclaimer">
                   <div className="flex flex-col pt-8 px-2">
                     <div className="text-center pb-4">
                       <div className="text-white">
-                        This project was audited by{" "}
+                        Our Staking Smart Contract was audited by{" "}
                         <a href="https://immunebytes.com/" className="text-blue-500">
                           Immune Bytes
-                        </a> and does not provide any guarantee. Use at your own risk.
+                        </a> . Keep in mind that security audits don't fully eliminate all 
+                              possible security risks. Use our staking page at your own risk
                       </div>
                     </div>
                   </div>
