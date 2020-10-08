@@ -524,6 +524,13 @@ const HomePage = () => {
                       <span className="text-white text-3xl">{minStake}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
+                    <div className="text-center pb-4">
+                      <span className="text-lg text-gray-400">
+                        Available amount:{" "}
+                      </span>
+                      <span className="text-white text-3xl">{balance}</span>
+                      <span className="text-white text-2xl ml-2">LEAD</span>
+                    </div>
                     <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
                       <input
                         type="number"
@@ -607,12 +614,15 @@ const HomePage = () => {
                 </div>
               </Card>
 
-              <Card title="Available to Unstake">
+              <Card title="Unstaking">
                 <div className="flex flex-col pt-8 px-2">
-                  <div className="text-center pb-8">
-                    <span className="text-white text-3xl">{stakes}</span>
-                    <span className="text-white text-2xl ml-2">LEAD</span>
-                  </div>
+                  <div className="text-center pb-4">
+                      <span className="text-lg text-gray-400">
+                        Available to unstake:{" "}
+                      </span>
+                      <span className="text-white text-3xl">{stakes}</span>
+                      <span className="text-white text-2xl ml-2">LEAD</span>
+                    </div>
                   <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
                     <input
                       type="number"
