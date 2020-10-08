@@ -141,6 +141,11 @@ export default () => {
             </a>
           </div>
         </div>
+        <div className="footer-copyright text-center py-3 text-white">
+        <div fluid>
+          &copy; {new Date().getFullYear()} Copyright: <a href="#"> Lead Cyber Service Limited </a>
+        </div>
+      </div>
       </footer>
     </div>
   );
