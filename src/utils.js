@@ -1,5 +1,4 @@
 import Web3 from "web3";
-import LeadStake from "./contracts/LeadStake.json";
 
 const initWeb3 = () => {
   return new Promise(async (resolve, reject) => {
