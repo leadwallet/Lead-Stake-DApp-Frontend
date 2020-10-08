@@ -138,6 +138,7 @@ const HomePage = () => {
       minRegisteration(),
       totalReward(),
       updateReferrals(),
+      updateStatus(),
     ]);
   }
 
@@ -228,6 +229,13 @@ const HomePage = () => {
     const sum = owing + referral + recorded;
     await setTotalRewards(sum);
     return sum;
+  }
+
+  async function updateStatus() {
+    if (leadToken) {
+      const status = await leadStake.methods.registered(accounts[0]).call();
+      setRegisteredStaus(status);
+    }
   }
 
   async function registerAndStake() {
