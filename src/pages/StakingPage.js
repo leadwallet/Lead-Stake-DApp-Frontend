@@ -349,7 +349,7 @@ const HomePage = () => {
       <div className="relative w-full z-30">
         <Header />
 
-        <div className="container mx-auto pb-24 px-4 force-height">
+        <div className="container mx-auto pb-18 px-4 force-height">
           {!accounts && (
             <div className="w-full py-6 text-center">
               
@@ -361,8 +361,11 @@ const HomePage = () => {
                 {loading && <Spinner color="white" size={40} />}
                 {!loading && (error !== "" ? error : "CONNECT METAMASK WALLET")}
               </Button>
-              //w-full md:w-3/6 text-2xl flex flex-row justify-center mx-auto
-              <div className="w-full md:w-3/6 justify-center mx-auto ">  
+
+              <div className="text-white text-center mt-6 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
+              <h1>LEAD STAKING</h1>
+              </div>
+              <div className="w-full md:w-3/6 justify-center mx-auto mt-6">  
                 <Card title="Rules">
                   <div className="flex flex-col pt-8 pb-4 text-white text-center">
                      <ul>
@@ -387,14 +390,14 @@ const HomePage = () => {
                 <div className="flex flex-col pt-8 px-2">
                   <br/><br/><br/><br/>
                 </div>
-                <Card title="Disclaimer">
-                  <div className="flex flex-col pt-8 px-2">
+                <Card noLine>
+                  <div className="flex flex-col px-2">
                     <div className="text-center pb-4">
-                      <div className="text-white">
-                        Our Staking Smart Contract was audited by{" "}
-                        <a href="https://immunebytes.com/" className="text-blue-500">
+                      <div className="text-white text-xs">
+                        <span className="text-blue-500">Disclaimer</span> Staking Smart Contract was audited by{" "}
+                        <a href="https://immunebytes.com/" target="_blank" className="text-blue-500">
                           Immune Bytes
-                        </a> . Keep in mind that security audits don't fully eliminate all 
+                        </a>. Keep in mind that security audits don't fully eliminate all 
                               possible security risks. Use our staking page at your own risk
                       </div>
                     </div>
