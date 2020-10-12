@@ -56,23 +56,23 @@ const HomePage = () => {
 
     const accounts = await web3.eth.getAccounts();
     const networkId = await web3.eth.net.getId();
-    if (networkId !== 3) {
-      setError("Please connect Ropsten Test Network account");
+    if (networkId !== 1) {
+      setError("Please connect Mainnet account");
       setLoading(false);
       return;
     }
 
     const leadToken = new web3.eth.Contract(
       ERC20.abi,
-      "0x9703e8b35f13f2835c4a0f60fe9f9993e3a45e30"
-    ); //ropsten testnet address
+      "0x1dd80016e3d4ae146ee2ebb484e8edd92dacc4ce"
+    ); //mainnet address for lead token
     const totalSupply = await leadToken.methods.totalSupply().call();
     const balance = await leadToken.methods.balanceOf(accounts[0]).call();
 
     const leadStake = new web3.eth.Contract(
       LeadStake.abi,
-      "0xaf90cdc22b7cfe2e8a42b346150840f5d62d4ba2"
-    ); //ropsten testnet adddress
+      "0x786A20fA02e4672d550BccF0BfFf118CAAE519e6"
+    ); //mainnet adddress for staking dapp
     const totalStaked = await leadStake.methods.totalStaked().call();
     const minStake = await leadStake.methods.minimumStakeValue().call();
     const stakingTax = await leadStake.methods.stakingTaxRate().call();
@@ -119,7 +119,7 @@ const HomePage = () => {
       if (window.ethereum) {
         if (
           window.ethereum.selectedAddress &&
-          window.ethereum.networkVersion === "3"
+          window.ethereum.networkVersion === "1"
         ) {
           await init();
         }
@@ -243,7 +243,7 @@ const HomePage = () => {
     try {
       let ref = referrer;
       await leadToken.methods
-        .approve("0xaf90cdc22b7cfe2e8a42b346150840f5d62d4ba2", amount)
+        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", amount)
         .send({ from: accounts[0] });
       if (!ref || ref.length !== 42)
         ref = "0x0000000000000000000000000000000000000000";
@@ -264,7 +264,7 @@ const HomePage = () => {
     setStakeLoading(true);
     try {
       await leadToken.methods
-        .approve("0xaf90cdc22b7cfe2e8a42b346150840f5d62d4ba2", amount)
+        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", amount)
         .send({ from: accounts[0] });
       await leadStake.methods.stake(amount).send({ from: accounts[0] });
       await updateAll();
