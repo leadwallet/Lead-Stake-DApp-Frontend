@@ -237,17 +237,16 @@ const HomePage = () => {
 
   async function registerAndStake() {
     setStakeLoading(true);
-    const actual = parseInt(amount * 1000000000000000000);
     try {
       let ref = referrer;
       await leadToken.methods
-        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", actual.toString())
+        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", amount)
         .send({ from: accounts[0] });
       if (!ref || ref.length !== 42)
         ref = "0x0000000000000000000000000000000000000000";
       await leadStake.methods
-        .registerAndStake(actual.toString(), ref)
-        .send({ from: accounts[0], gas: 100000 });
+        .registerAndStake(amount, ref)
+        .send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
       if (err.code !== 4001) {
@@ -260,12 +259,11 @@ const HomePage = () => {
 
   async function stake() {
     setStakeLoading(true);
-    const actual = parseInt(amount * 1000000000000000000);
     try {
       await leadToken.methods
-        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", actual.toString())
+        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", amount)
         .send({ from: accounts[0] });
-      await leadStake.methods.stake(actual.toString()).send({ from: accounts[0] });
+      await leadStake.methods.stake(amount).send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
       if (err.code !== 4001) {
@@ -285,7 +283,7 @@ const HomePage = () => {
     const actual = parseInt(unstakeAmount * 1000000000000000000);
     try {
       await leadStake.methods
-        .unstake(actual.toString())
+        .unstake(actual)
         .send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
