@@ -8,6 +8,7 @@ import Spinner from "../components/common/Spinner";
 import { initWeb3 } from "../utils.js";
 import LeadStake from "../contracts/LeadStake.json";
 import ERC20 from "../contracts/ERC20.json";
+import fromExponential from "from-exponential";
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false);
@@ -237,15 +238,17 @@ const HomePage = () => {
 
   async function registerAndStake() {
     setStakeLoading(true);
+    const actual = amount * (10 ** 18);
+    const arg = fromExponential(actual);
     try {
       let ref = referrer;
       await leadToken.methods
-        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", amount)
+        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", arg)
         .send({ from: accounts[0] });
       if (!ref || ref.length !== 42)
         ref = "0x0000000000000000000000000000000000000000";
       await leadStake.methods
-        .registerAndStake(amount, ref)
+        .registerAndStake(arg, ref)
         .send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
@@ -259,11 +262,14 @@ const HomePage = () => {
 
   async function stake() {
     setStakeLoading(true);
+    const actual = amount * (10 ** 18);
+    const arg = fromExponential(actual);
     try {
       await leadToken.methods
-        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", amount)
+        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", arg)
         .send({ from: accounts[0] });
-      await leadStake.methods.stake(amount).send({ from: accounts[0] });
+        
+      await leadStake.methods.stake(arg).send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
       if (err.code !== 4001) {
@@ -280,10 +286,11 @@ const HomePage = () => {
       return;
     }
     setUnstakeLoading(true);
-    const actual = parseInt(unstakeAmount * 1000000000000000000);
+    const actual = unstakeAmount * (10 ** 18);
+    const arg = fromExponential(actual);
     try {
       await leadStake.methods
-        .unstake(actual)
+        .unstake(arg)
         .send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
@@ -629,7 +636,7 @@ const HomePage = () => {
                       <span className="text-lg text-gray-400">
                         Available to unstake:{" "}
                       </span>
-                      <span className="text-white text-3xl">{parseFloat(stakes) / 1000000000000000000}</span>
+                      <span className="text-white text-3xl">{(parseFloat(stakes) / 1000000000000000000).toFixed()}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
                   <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
