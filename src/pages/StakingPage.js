@@ -38,7 +38,6 @@ const HomePage = () => {
   const [unstakeAmount, setUnstakeAmount] = useState();
   const [referrer, setReferrer] = useState();
   const [showModal, setShowModal] = useState(false);
-
   const init = async () => {
     if (isReady()) {
       return;
@@ -193,10 +192,8 @@ const HomePage = () => {
   async function minRegisteration() {
     if (leadStake) {
       const tax = parseInt(await leadStake.methods.registrationTax().call());
-      const value = parseInt(
-        await leadStake.methods.minimumStakeValue().call()
-      );
-      const sum = tax + value;
+      const value = parseInt(await leadStake.methods.minimumStakeValue().call());
+      const sum = parseInt(tax / 1000000000000000000) + parseInt(value / 1000000000000000000);
       await setMinRegister(sum);
       return sum;
     }
@@ -283,9 +280,10 @@ const HomePage = () => {
       return;
     }
     setUnstakeLoading(true);
+    const actual = parseInt(unstakeAmount * 1000000000000000000);
     try {
       await leadStake.methods
-        .unstake(unstakeAmount)
+        .unstake(actual)
         .send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
@@ -420,7 +418,10 @@ const HomePage = () => {
                 <div className="flex flex-col pt-8 pb-4 text-white">
                   <div className="text-center">
                     <span className="text-white text-5xl">
-                      {parseFloat(totalStaked).toFixed(2)}
+                      {(
+                        (parseFloat(totalStaked).toFixed(2)) /
+                        1000000000000000000
+                      ).toFixed(2)}
                     </span>
                     <span className="text-white text-2xl ml-2">LEAD</span>
                   </div>
@@ -443,7 +444,7 @@ const HomePage = () => {
                         <li>
                           Registration Fee:{"  "}
                           <span className="text-white text-2xl">
-                            {registrationTax} LEAD
+                            {parseInt(registrationTax) / 1000000000000000000} LEAD
                           </span>
                         </li>
                         <li>
@@ -461,7 +462,7 @@ const HomePage = () => {
                         <li>
                           Minimum Stake:{"  "}
                           <span className="text-white text-2xl">
-                            {minStake} LEAD
+                            {parseInt(minStake) / 1000000000000000000} LEAD
                           </span>
                         </li>
                       </ul>
@@ -477,14 +478,14 @@ const HomePage = () => {
                       <span className="text-lg text-gray-400">
                         Minimum amount needed:{" "}
                       </span>
-                      <span className="text-white text-3xl">{minRegister}</span>
+                      <span className="text-white text-3xl">{parseInt(minRegister)}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
                     <div className="text-center pb-4">
                       <span className="text-lg text-gray-400">
                         Available amount:{" "}
                       </span>
-                      <span className="text-white text-3xl">{balance}</span>
+                      <span className="text-white text-3xl">{parseInt(parseInt(balance) / 1000000000000000000)}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
                     <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
@@ -529,14 +530,14 @@ const HomePage = () => {
                       <span className="text-lg text-gray-400">
                         Minimum amount needed:{" "}
                       </span>
-                      <span className="text-white text-3xl">{minStake}</span>
+                      <span className="text-white text-3xl">{parseInt(minStake) / 1000000000000000000}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
                     <div className="text-center pb-4">
                       <span className="text-lg text-gray-400">
                         Available amount:{" "}
                       </span>
-                      <span className="text-white text-3xl">{balance}</span>
+                      <span className="text-white text-3xl">{parseInt(parseInt(balance) / 1000000000000000000)}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
                     <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
@@ -569,7 +570,7 @@ const HomePage = () => {
                 <div className="flex flex-col pt-8 px-2">
                   <div className="text-center pb-8">
                     <span className="text-white text-5xl">
-                      {parseFloat(totalRewards).toFixed(2)}
+                      {(parseFloat(totalRewards) / 1000000000000000000).toFixed(2)}
                     </span>
                     <span className="text-white text-2xl ml-2">LEAD</span>
                   </div>
@@ -595,7 +596,7 @@ const HomePage = () => {
                         <span className="text-gray-400 text-lg">
                           Staking Reward:{" "}
                         </span>
-                        {stakingRewards} LEAD
+                        {parseFloat(stakingRewards) / 1000000000000000000} LEAD
                       </div>
                       <div>
                         <span className="text-gray-400 text-lg">
@@ -609,7 +610,7 @@ const HomePage = () => {
                         <span className="text-gray-400 text-lg">
                           Referral Reward:
                         </span>{" "}
-                        {referralRewards} LEAD
+                        {parseFloat(referralRewards) / 1000000000000000000} LEAD
                       </div>
                       <div>
                         <span className="text-gray-400 text-lg">
@@ -628,7 +629,7 @@ const HomePage = () => {
                       <span className="text-lg text-gray-400">
                         Available to unstake:{" "}
                       </span>
-                      <span className="text-white text-3xl">{stakes}</span>
+                      <span className="text-white text-3xl">{parseFloat(stakes) / 1000000000000000000}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
                   <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
