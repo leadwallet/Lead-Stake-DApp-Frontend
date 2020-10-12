@@ -1,30 +1,10 @@
 {
-  "contractName": "IERC20",
+  "contractName": "Owned",
   "abi": [
     {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "tokenOwner",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "spender",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "tokens",
-          "type": "uint256"
-        }
-      ],
-      "name": "Approval",
-      "type": "event"
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
     },
     {
       "anonymous": false,
@@ -32,164 +12,51 @@
         {
           "indexed": true,
           "internalType": "address",
-          "name": "from",
+          "name": "_from",
           "type": "address"
         },
         {
           "indexed": true,
           "internalType": "address",
-          "name": "to",
+          "name": "_to",
           "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "tokens",
-          "type": "uint256"
         }
       ],
-      "name": "Transfer",
+      "name": "OwnershipTransferred",
       "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokens",
-          "type": "uint256"
-        }
-      ],
-      "name": "transfer",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "success",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokens",
-          "type": "uint256"
-        }
-      ],
-      "name": "transferFrom",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "success",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "tokenOwner",
-          "type": "address"
-        }
-      ],
-      "name": "balanceOf",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "balance",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "spender",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokens",
-          "type": "uint256"
-        }
-      ],
-      "name": "approve",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "success",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "tokenOwner",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "spender",
-          "type": "address"
-        }
-      ],
-      "name": "allowance",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "remaining",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
     },
     {
       "inputs": [],
-      "name": "totalSupply",
+      "name": "owner",
       "outputs": [
         {
-          "internalType": "uint256",
+          "internalType": "address",
           "name": "",
-          "type": "uint256"
+          "type": "address"
         }
       ],
       "stateMutability": "view",
       "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"tokenOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"tokens\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"tokens\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenOwner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"remaining\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokens\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenOwner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokens\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokens\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/LENOVO/Desktop/THE GRIND/Blockchain Dev/gitrepo/LeadStake/contracts/LeadStake.sol\":\"IERC20\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/LENOVO/Desktop/THE GRIND/Blockchain Dev/gitrepo/LeadStake/contracts/LeadStake.sol\":{\"keccak256\":\"0xec1809e0936dd9cdc2f00053d501db65423cdec85222620fa7754c4816bd1326\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://760392a1d5c07463598b811ff6806cc99002b6f19c96e80f33eed374b14c7d48\",\"dweb:/ipfs/QmWttQ2dEP8woU1b1L7idrPskf7NmoVrXPaTwBUFLNqSf8\"]}},\"version\":1}",
-  "bytecode": "0x",
-  "deployedBytecode": "0x",
-  "sourceMap": "",
-  "deployedSourceMap": "",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/LENOVO/Desktop/THE GRIND/Blockchain Dev/gitrepo/LeadStake/contracts/LeadStake.sol\":\"Owned\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/LENOVO/Desktop/THE GRIND/Blockchain Dev/gitrepo/LeadStake/contracts/LeadStake.sol\":{\"keccak256\":\"0xec1809e0936dd9cdc2f00053d501db65423cdec85222620fa7754c4816bd1326\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://760392a1d5c07463598b811ff6806cc99002b6f19c96e80f33eed374b14c7d48\",\"dweb:/ipfs/QmWttQ2dEP8woU1b1L7idrPskf7NmoVrXPaTwBUFLNqSf8\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610222806100606000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80638da5cb5b1461003b578063f2fde38b1461006f575b600080fd5b6100436100b3565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100b16004803603602081101561008557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100d7565b005b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461012f57600080fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508073ffffffffffffffffffffffffffffffffffffffff1660008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a35056fea2646970667358221220a205340c3514e6e8484ea811d1bbdc3511b9701a05b45c970b4fb8dc4c98a60c64736f6c634300060c0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c80638da5cb5b1461003b578063f2fde38b1461006f575b600080fd5b6100436100b3565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6100b16004803603602081101561008557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506100d7565b005b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461012f57600080fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508073ffffffffffffffffffffffffffffffffffffffff1660008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a35056fea2646970667358221220a205340c3514e6e8484ea811d1bbdc3511b9701a05b45c970b4fb8dc4c98a60c64736f6c634300060c0033",
+  "sourceMap": "1608:438:1:-:0;;;1738:58;;;;;;;;;;1778:10;1770:5;;:18;;;;;;;;;;;;;;;;;;1608:438;;;;;;",
+  "deployedSourceMap": "1608:438:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1630:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;1890:153;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1630:20;;;;;;;;;;;;:::o;1890:153::-;1856:5;;;;;;;;;;1842:19;;:10;:19;;;1834:28;;;;;;1972:9:::1;1964:5;::::0;:17:::1;;;;;;;;;;;;;;;;;;2025:9;1997:38;;2018:5;::::0;::::1;;;;;;;;1997:38;;;;;;;;;;;;1890:153:::0;:::o",
   "source": "//\"SPDX-License-Identifier: UNLICENSED\"\r\n\r\npragma solidity ^0.6.0;\r\n\r\ninterface IERC20 {\r\n    function transfer(address to, uint tokens) external returns (bool success);\r\n    function transferFrom(address from, address to, uint tokens) external returns (bool success);\r\n    function balanceOf(address tokenOwner) external view returns (uint balance);\r\n    function approve(address spender, uint tokens) external returns (bool success);\r\n    function allowance(address tokenOwner, address spender) external view returns (uint remaining);\r\n    function totalSupply() external view returns (uint);\r\n    event Transfer(address indexed from, address indexed to, uint tokens);\r\n    event Approval(address indexed tokenOwner, address indexed spender, uint tokens);\r\n}\r\n\r\nlibrary SafeMath {\r\n    function add(uint a, uint b) internal pure returns (uint c) {\r\n        c = a + b;\r\n        require(c >= a);\r\n    }\r\n\r\n    function sub(uint a, uint b) internal pure returns (uint c) {\r\n        require(b <= a);\r\n        c = a - b;\r\n    }\r\n\r\n    function mul(uint a, uint b) internal pure returns (uint c) {\r\n        c = a * b;\r\n        require(a == 0 || c / a == b);\r\n    }\r\n\r\n    function div(uint a, uint b) internal pure returns (uint c) {\r\n        require(b > 0);\r\n        c = a / b;\r\n    }\r\n    \r\n    function mod(uint256 a, uint256 b) internal pure returns (uint256) {\r\n        return mod(a, b, \"SafeMath: modulo by zero\");\r\n    }\r\n    \r\n    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\r\n        require(b != 0, errorMessage);\r\n        return a % b;\r\n    }\r\n}\r\n\r\ncontract Owned {\r\n    address public owner;\r\n\r\n    event OwnershipTransferred(address indexed _from, address indexed _to);\r\n\r\n    constructor() public {\r\n        owner = msg.sender;\r\n    }\r\n\r\n    modifier onlyOwner {\r\n        require(msg.sender == owner);\r\n        _;\r\n    }\r\n\r\n    function transferOwnership(address _newOwner) public onlyOwner {\r\n        owner = _newOwner;\r\n        emit OwnershipTransferred(owner, _newOwner);\r\n    }\r\n}\r\n\r\ncontract LeadStake is Owned {\r\n    \r\n    //initializing safe computations\r\n    using SafeMath for uint;\r\n\r\n    //LEAD contract address\r\n    address public lead;\r\n    //total amount of staked lead\r\n    uint public totalStaked;\r\n    //tax rate for staking in percentage\r\n    uint public stakingTaxRate;                     //10 = 1%\r\n    //tax amount for registration\r\n    uint public registrationTax;\r\n    //daily return of investment in percentage\r\n    uint public dailyROI;                         //100 = 1%\r\n    //tax rate for unstaking in percentage \r\n    uint public unstakingTaxRate;                   //10 = 1%\r\n    //minimum stakeable LEAD \r\n    uint public minimumStakeValue;\r\n    //pause mechanism\r\n    bool public active = true;\r\n    \r\n    //mapping of stakeholder's addresses to data\r\n    mapping(address => uint) public stakes;\r\n    mapping(address => uint) public referralRewards;\r\n    mapping(address => uint) public referralCount;\r\n    mapping(address => uint) public stakeRewards;\r\n    mapping(address => uint) public lastClock;\r\n    mapping(address => bool) public registered;\r\n    \r\n    //Events\r\n    event OnWithdrawal(address sender, uint amount);\r\n    event OnStake(address sender, uint amount, uint tax);\r\n    event OnUnstake(address sender, uint amount, uint tax);\r\n    event OnRegisterAndStake(address stakeholder, uint amount, uint totalTax , address _referrer);\r\n    \r\n    /**\r\n     * @dev Sets the initial values\r\n     */\r\n    constructor(\r\n        address _token,\r\n        uint _stakingTaxRate, \r\n        uint _unstakingTaxRate,\r\n        uint _dailyROI,\r\n        uint _registrationTax,\r\n        uint _minimumStakeValue) public {\r\n            \r\n        //set initial state variables\r\n        lead = _token;\r\n        stakingTaxRate = _stakingTaxRate;\r\n        unstakingTaxRate = _unstakingTaxRate;\r\n        dailyROI = _dailyROI;\r\n        registrationTax = _registrationTax;\r\n        minimumStakeValue = _minimumStakeValue;\r\n    }\r\n    \r\n    //exclusive access for registered address\r\n    modifier onlyRegistered() {\r\n        require(registered[msg.sender] == true, \"Stakeholder must be registered\");\r\n        _;\r\n    }\r\n    \r\n    //exclusive access for unregistered address\r\n    modifier onlyUnregistered() {\r\n        require(registered[msg.sender] == false, \"Stakeholder is already registered\");\r\n        _;\r\n    }\r\n        \r\n    //make sure contract is active\r\n    modifier whenActive() {\r\n        require(active == true, \"Smart contract is curently inactive\");\r\n        _;\r\n    }\r\n    \r\n    /**\r\n     * registers and creates stakes for new stakeholders\r\n     * deducts the registration tax and staking tax\r\n     * calculates refferal bonus from the registration tax and sends it to the _referrer if there is one\r\n     * transfers LEAD from sender's address into the smart contract\r\n     * Emits an {OnRegisterAndStake} event..\r\n     */\r\n    function registerAndStake(uint _amount, address _referrer) external onlyUnregistered() whenActive() {\r\n        //makes sure user is not the referrer\r\n        require(msg.sender != _referrer, \"Cannot refer self\");\r\n        //makes sure referrer is registered already\r\n        require(registered[_referrer] || address(0x0) == _referrer, \"Referrer must be registered\");\r\n        //makes sure user has enough amount\r\n        require(IERC20(lead).balanceOf(msg.sender) >= _amount, \"Must have enough balance to stake\");\r\n        //makes sure amount is more than the registration fee and the minimum deposit\r\n        require(_amount >= registrationTax.add(minimumStakeValue), \"Must send at least enough LEAD to pay registration fee.\");\r\n        //makes sure smart contract transfers LEAD from user\r\n        require(IERC20(lead).transferFrom(msg.sender, address(this), _amount), \"Stake failed due to failed amount transfer.\");\r\n        //calculates final amount after deducting registration tax\r\n        uint finalAmount = _amount.sub(registrationTax);\r\n        //calculates staking tax on final calculated amount\r\n        uint stakingTax = (stakingTaxRate.mul(finalAmount)).div(1000);\r\n        //conditional statement if user registers with referrer \r\n        if(_referrer != address(0x0)) {\r\n            //increase referral count of referrer\r\n            referralCount[_referrer]++;\r\n            //add referral bonus to referrer\r\n            referralRewards[_referrer] = (referralRewards[_referrer]).add(stakingTax);\r\n        } \r\n        //register user\r\n        registered[msg.sender] = true;\r\n        //mark the transaction date\r\n        lastClock[msg.sender] = now;\r\n        //update the total staked LEAD amount in the pool\r\n        totalStaked = totalStaked.add(finalAmount).sub(stakingTax);\r\n        //update the user's stakes deducting the staking tax\r\n        stakes[msg.sender] = (stakes[msg.sender]).add(finalAmount).sub(stakingTax);\r\n        //emit event\r\n        emit OnRegisterAndStake(msg.sender, _amount, registrationTax.add(stakingTax), _referrer);\r\n    }\r\n    \r\n    //calculates stakeholders latest unclaimed earnings \r\n    function calculateEarnings(address _stakeholder) public view returns(uint) {\r\n        //records the number of days between the last payout time and now\r\n        uint activeDays = (now.sub(lastClock[_stakeholder])).div(86400);\r\n        //returns earnings based on daily ROI and active days\r\n        return ((stakes[_stakeholder]).mul(dailyROI).mul(activeDays)).div(10000);\r\n    }\r\n    \r\n    /**\r\n     * creates stakes for already registered stakeholders\r\n     * deducts the staking tax from _amount inputted\r\n     * registers the remainder in the stakes of the sender\r\n     * records the previous earnings before updated stakes \r\n     * Emits an {OnStake} event\r\n     */\r\n    function stake(uint _amount) external onlyRegistered() whenActive() {\r\n        //makes sure stakeholder does not stake below the minimum\r\n        require(_amount >= minimumStakeValue, \"Amount is below minimum stake value.\");\r\n        //makes sure stakeholder has enough balance\r\n        require(IERC20(lead).balanceOf(msg.sender) >= _amount, \"Must have enough balance to stake\");\r\n        //makes sure smart contract transfers LEAD from user\r\n        require(IERC20(lead).transferFrom(msg.sender, address(this), _amount), \"Stake failed due to failed amount transfer.\");\r\n        //calculates staking tax on amount\r\n        uint stakingTax = (stakingTaxRate.mul(_amount)).div(1000);\r\n        //calculates amount after tax\r\n        uint afterTax = _amount.sub(stakingTax);\r\n        //update the total staked LEAD amount in the pool\r\n        totalStaked = totalStaked.add(afterTax);\r\n        //adds earnings current earnings to stakeRewards\r\n        stakeRewards[msg.sender] = (stakeRewards[msg.sender]).add(calculateEarnings(msg.sender));\r\n        //calculates unpaid period\r\n        uint remainder = (now.sub(lastClock[msg.sender])).mod(86400);\r\n        //mark transaction date with remainder\r\n        lastClock[msg.sender] = now.sub(remainder);\r\n        //updates stakeholder's stakes\r\n        stakes[msg.sender] = (stakes[msg.sender]).add(afterTax);\r\n        //emit event\r\n        emit OnStake(msg.sender, afterTax, stakingTax);\r\n    }\r\n    \r\n    \r\n    /**\r\n     * removes '_amount' stakes for already registered stakeholders\r\n     * deducts the unstaking tax from '_amount'\r\n     * transfers the sum of the remainder, stake rewards, referral rewards, and current eanrings to the sender \r\n     * deregisters stakeholder if all the stakes are removed\r\n     * Emits an {OnStake} event\r\n     */\r\n    function unstake(uint _amount) external onlyRegistered() {\r\n        //makes sure _amount is not more than stake balance\r\n        require(_amount <= stakes[msg.sender] && _amount > 0, 'Insufficient balance to unstake');\r\n        //calculates unstaking tax\r\n        uint unstakingTax = (unstakingTaxRate.mul(_amount)).div(1000);\r\n        //calculates amount after tax\r\n        uint afterTax = _amount.sub(unstakingTax);\r\n        //sums up stakeholder's total rewards with _amount deducting unstaking tax\r\n        stakeRewards[msg.sender] = (stakeRewards[msg.sender]).add(calculateEarnings(msg.sender));\r\n        //updates stakes\r\n        stakes[msg.sender] = (stakes[msg.sender]).sub(_amount);\r\n        //calculates unpaid period\r\n        uint remainder = (now.sub(lastClock[msg.sender])).mod(86400);\r\n        //mark transaction date with remainder\r\n        lastClock[msg.sender] = now.sub(remainder);\r\n        //update the total staked LEAD amount in the pool\r\n        totalStaked = totalStaked.sub(_amount);\r\n        //transfers value to stakeholder\r\n        IERC20(lead).transfer(msg.sender, afterTax);\r\n        //conditional statement if stakeholder has no stake left\r\n        if(stakes[msg.sender] == 0) {\r\n            //deregister stakeholder\r\n            registered[msg.sender] = false;\r\n        }\r\n        //emit event\r\n        emit OnUnstake(msg.sender, _amount, unstakingTax);\r\n    }\r\n    \r\n    //transfers total active earnings to stakeholder's wallet\r\n    function withdrawEarnings() external returns (bool success) {\r\n        //calculates the total redeemable rewards\r\n        uint totalReward = (referralRewards[msg.sender]).add(stakeRewards[msg.sender]).add(calculateEarnings(msg.sender));\r\n        //makes sure user has rewards to withdraw before execution\r\n        require(totalReward > 0, 'No reward to withdraw'); \r\n        //makes sure _amount is not more than required balance\r\n        require((IERC20(lead).balanceOf(address(this))).sub(totalStaked) >= totalReward, 'Insufficient LEAD balance in pool');\r\n        //initializes stake rewards\r\n        stakeRewards[msg.sender] = 0;\r\n        //initializes referal rewards\r\n        referralRewards[msg.sender] = 0;\r\n        //initializes referral count\r\n        referralCount[msg.sender] = 0;\r\n        //calculates unpaid period\r\n        uint remainder = (now.sub(lastClock[msg.sender])).mod(86400);\r\n        //mark transaction date with remainder\r\n        lastClock[msg.sender] = now.sub(remainder);\r\n        //transfers total rewards to stakeholder\r\n        IERC20(lead).transfer(msg.sender, totalReward);\r\n        //emit event\r\n        emit OnWithdrawal(msg.sender, totalReward);\r\n        return true;\r\n    }\r\n\r\n    //used to view the current reward pool\r\n    function rewardPool() external view onlyOwner() returns(uint claimable) {\r\n        return (IERC20(lead).balanceOf(address(this))).sub(totalStaked);\r\n    }\r\n    \r\n    //used to pause/start the contract's functionalities\r\n    function changeActiveStatus() external onlyOwner() {\r\n        if(active) {\r\n            active = false;\r\n        } else {\r\n            active = true;\r\n        }\r\n    }\r\n    \r\n    //sets the staking rate\r\n    function setStakingTaxRate(uint _stakingTaxRate) external onlyOwner() {\r\n        stakingTaxRate = _stakingTaxRate;\r\n    }\r\n\r\n    //sets the unstaking rate\r\n    function setUnstakingTaxRate(uint _unstakingTaxRate) external onlyOwner() {\r\n        unstakingTaxRate = _unstakingTaxRate;\r\n    }\r\n    \r\n    //sets the daily ROI\r\n    function setDailyROI(uint _dailyROI) external onlyOwner() {\r\n        dailyROI = _dailyROI;\r\n    }\r\n    \r\n    //sets the registration tax\r\n    function setRegistrationTax(uint _registrationTax) external onlyOwner() {\r\n        registrationTax = _registrationTax;\r\n    }\r\n    \r\n    //sets the minimum stake value\r\n    function setMinimumStakeValue(uint _minimumStakeValue) external onlyOwner() {\r\n        minimumStakeValue = _minimumStakeValue;\r\n    }\r\n    \r\n    //withdraws _amount from the pool to owner\r\n    function filter(uint _amount) external onlyOwner returns (bool success) {\r\n        //makes sure _amount is not more than required balance\r\n        require((IERC20(lead).balanceOf(address(this))).sub(totalStaked) >= _amount, 'Insufficient LEAD balance in pool');\r\n        //transfers _amount to _address\r\n        IERC20(lead).transfer(msg.sender, _amount);\r\n        //emit event\r\n        emit OnWithdrawal(msg.sender, _amount);\r\n        return true;\r\n    }\r\n}",
   "sourcePath": "C:\\Users\\LENOVO\\Desktop\\THE GRIND\\Blockchain Dev\\gitrepo\\LeadStake\\contracts\\LeadStake.sol",
   "ast": {
@@ -31966,7 +31833,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-10-12T09:46:20.343Z",
+  "updatedAt": "2020-10-12T09:46:20.479Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
