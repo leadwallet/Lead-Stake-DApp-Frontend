@@ -392,7 +392,7 @@ const HomePage = () => {
                           3. Withdraw earned rewards anytime
                         </li>
                         <li>
-                          4. Unsake LEAD tokens anytime
+                          4. Unstake LEAD tokens anytime
                         </li>
                         <li>
                           5. Earn extra rewards by referring new members
