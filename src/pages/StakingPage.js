@@ -498,7 +498,7 @@ const HomePage = () => {
                       <span className="text-white text-3xl">{parseInt(parseInt(balance) / 1000000000000000000)}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
-                    <form className={`rounded-md border-2 border-primary p-2 flex justify-between items-center ${((userBalance <= 0) || (userBalance < amount)) ? "to-stake is-disabled" : ""}`}>
+                    <div className={`rounded-md border-2 border-primary p-2 flex justify-between items-center ${((userBalance <= 0) || (userBalance < amount)) ? "to-stake is-disabled" : ""}`}>
                       <input
                         type="number"
                         placeholder="LEAD To Stake"
@@ -510,7 +510,6 @@ const HomePage = () => {
                         className="to-stake__input text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-transparent focus:text-white px-2"
                       />
                       <Button
-                        type="submit"
                         disabled={(userBalance <= 0) || (userBalance < amount)}
                         onClick={() => registerAndStake()}
                         className="to-stake__submit flex flex-row items-center w-48 justify-center"
@@ -524,7 +523,7 @@ const HomePage = () => {
                           </>
                         )}
                       </Button>
-                    </form>
+                    </div>
                     <div className="text-white text-center mt-4">
                       Has referrer's address?
                     </div>
