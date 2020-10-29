@@ -320,7 +320,7 @@ const HomePage = () => {
     setWithdrawLoading(false);
   }
 
-  // Users availble LEAD balance
+  // Users available LEAD balance
   const userBalance = (parseInt(parseInt(balance) / 1000000000000000000));
 
   return (
