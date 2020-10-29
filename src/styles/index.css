@@ -181,4 +181,15 @@ body {
   stroke-width: 6;
 }
 
+/* Staking */
+.to-stake.is-disabled {
+  border-color: #4a4a4a;
+  transition: .1s all ease-in-out;
+}
+
+.to-stake__submit:disabled {
+  background-color: #4a4a4a;
+  cursor: default;
+}
+
 @tailwind utilities;

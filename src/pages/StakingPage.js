@@ -320,6 +320,9 @@ const HomePage = () => {
     setWithdrawLoading(false);
   }
 
+  // Users availble LEAD balance
+  const userBalance = (parseInt(parseInt(balance) / 1000000000000000000));
+
   return (
     <div className="w-full overflow-hidden">
       {showModal && (
@@ -495,17 +498,22 @@ const HomePage = () => {
                       <span className="text-white text-3xl">{parseInt(parseInt(balance) / 1000000000000000000)}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
-                    <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
+                    <form className={`rounded-md border-2 border-primary p-2 flex justify-between items-center ${((userBalance <= 0) || (userBalance < amount)) ? "to-stake is-disabled" : ""}`}>
                       <input
                         type="number"
                         placeholder="LEAD To Stake"
                         value={amount}
+                        min="0"
+                        max={userBalance}
+                        disabled={(userBalance <= 0)}
                         onChange={(e) => setAmount(e.target.value)}
-                        className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
+                        className="to-stake__input text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-transparent focus:text-white px-2"
                       />
                       <Button
+                        type="submit"
+                        disabled={(userBalance <= 0) || (userBalance < amount)}
                         onClick={() => registerAndStake()}
-                        className="flex flex-row items-center w-48 justify-center"
+                        className="to-stake__submit flex flex-row items-center w-48 justify-center"
                       >
                         {stakeLoading ? (
                           <Spinner size={30} />
@@ -516,7 +524,7 @@ const HomePage = () => {
                           </>
                         )}
                       </Button>
-                    </div>
+                    </form>
                     <div className="text-white text-center mt-4">
                       Has referrer's address?
                     </div>
@@ -544,20 +552,24 @@ const HomePage = () => {
                       <span className="text-lg text-gray-400">
                         Available amount:{" "}
                       </span>
-                      <span className="text-white text-3xl">{parseInt(parseInt(balance) / 1000000000000000000)}</span>
+                      <span className="text-white text-3xl">{userBalance}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
-                    <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
+                    <div className={`rounded-md border-2 border-primary p-2 flex justify-between items-center ${((userBalance <= 0) || (userBalance < amount)) ? "to-stake is-disabled" : ""}`}>
                       <input
                         type="number"
                         placeholder="LEAD To Stake"
                         value={amount}
+                        min="0"
+                        max={userBalance}
+                        disabled={(userBalance <= 0)}
                         onChange={(e) => setAmount(e.target.value)}
-                        className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
+                        className="to-stake__input text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-transparent focus:text-white px-2"
                       />
                       <Button
+                        disabled={(userBalance <= 0) || (userBalance < amount)}
                         onClick={() => stake()}
-                        className="flex flex-row items-center w-48 justify-center"
+                        className="to-stake__submit flex flex-row items-center w-48 justify-center"
                       >
                         {stakeLoading ? (
                           <Spinner size={30} />
