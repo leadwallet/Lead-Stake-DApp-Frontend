@@ -181,12 +181,15 @@ body {
   stroke-width: 6;
 }
 
-/* Staking */
+/* Staking, Caliming, Unstaking Actions */
+.unstake.is-disabled,
 .to-stake.is-disabled {
   border-color: #4a4a4a;
   transition: .1s all ease-in-out;
 }
 
+.unstake__submit:disabled,
+.claim-stake:disabled,
 .to-stake__submit:disabled {
   background-color: #4a4a4a;
   cursor: default;
