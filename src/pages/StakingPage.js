@@ -286,7 +286,7 @@ const HomePage = () => {
       return;
     }
     setUnstakeLoading(true);
-    const actual = unstakeAmount * (10 ** 18);
+    const actual = unstakeAmount.value * (10 ** 18);
     const arg = fromExponential(actual);
     try {
       await leadStake.methods
@@ -319,6 +319,12 @@ const HomePage = () => {
     }
     setWithdrawLoading(false);
   }
+
+  // Users available LEAD balance
+  const userBalance = (parseInt(parseInt(balance) / 1000000000000000000));
+
+  // Users available LEAD balance to unstake
+  const userUnstakeBalance = Math.trunc((parseFloat(stakes) / 1000000000000000000));
 
   return (
     <div className="w-full overflow-hidden">
@@ -362,7 +368,7 @@ const HomePage = () => {
       <div className="relative w-full z-30">
         <Header />
 
-        <div className="container mx-auto pb-18 px-4 force-height">
+        <div className="container mx-auto pb-18 px-4 mb-16 force-height">
           {!accounts && (
             <div className="w-full py-6 text-center">
               
@@ -449,25 +455,25 @@ const HomePage = () => {
                     <div className="text-gray-400 text-lg font-thin">
                       <ul>
                         <li>
-                          Registration Fee:{"  "}
+                          One-time Registration Fee:&nbsp;{"  "}
                           <span className="text-white text-2xl">
                             {parseInt(registrationTax) / 1000000000000000000} LEAD
                           </span>
                         </li>
                         <li>
-                          Staking Fee:{"  "}
+                          Staking Fee:&nbsp;{"  "}
                           <span className="text-white text-2xl">
                             {parseFloat(stakingTax) / 10} %
                           </span>
                         </li>
                         <li>
-                          Unstaking Fee:{"  "}
+                          Unstaking Fee:&nbsp;{"  "}
                           <span className="text-white text-2xl">
                             {parseFloat(unstakingTax) / 10} %
                           </span>
                         </li>
                         <li>
-                          Minimum Stake:{"  "}
+                          Minimum Stake:&nbsp;{"  "}
                           <span className="text-white text-2xl">
                             {parseInt(minStake) / 1000000000000000000} LEAD
                           </span>
@@ -492,20 +498,24 @@ const HomePage = () => {
                       <span className="text-lg text-gray-400">
                         Available amount:{" "}
                       </span>
-                      <span className="text-white text-3xl">{parseInt(parseInt(balance) / 1000000000000000000)}</span>
+                      <span className="text-white text-3xl">{userBalance}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
-                    <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
+                    <div className={`rounded-md border-2 border-primary p-2 flex justify-between items-center ${((userBalance <= 0) || (userBalance < amount)) ? "to-stake is-disabled" : ""}`}>
                       <input
                         type="number"
                         placeholder="LEAD To Stake"
                         value={amount}
+                        min="0"
+                        max={userBalance}
+                        disabled={(userBalance <= 0)}
                         onChange={(e) => setAmount(e.target.value)}
-                        className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
+                        className="to-stake__input text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-transparent focus:text-white px-2"
                       />
                       <Button
+                        disabled={(userBalance <= 0) || (userBalance < amount)}
                         onClick={() => registerAndStake()}
-                        className="flex flex-row items-center w-48 justify-center"
+                        className="to-stake__submit flex flex-row items-center w-48 justify-center"
                       >
                         {stakeLoading ? (
                           <Spinner size={30} />
@@ -544,20 +554,24 @@ const HomePage = () => {
                       <span className="text-lg text-gray-400">
                         Available amount:{" "}
                       </span>
-                      <span className="text-white text-3xl">{parseInt(parseInt(balance) / 1000000000000000000)}</span>
+                      <span className="text-white text-3xl">{userBalance}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
-                    <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
+                    <div className={`rounded-md border-2 border-primary p-2 flex justify-between items-center ${((userBalance <= 0) || (userBalance < amount)) ? "to-stake is-disabled" : ""}`}>
                       <input
                         type="number"
                         placeholder="LEAD To Stake"
                         value={amount}
+                        min="0"
+                        max={userBalance}
+                        disabled={(userBalance <= 0)}
                         onChange={(e) => setAmount(e.target.value)}
-                        className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
+                        className="to-stake__input text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-transparent focus:text-white px-2"
                       />
                       <Button
+                        disabled={(userBalance <= 0) || (userBalance < amount)}
                         onClick={() => stake()}
-                        className="flex flex-row items-center w-48 justify-center"
+                        className="to-stake__submit flex flex-row items-center w-48 justify-center"
                       >
                         {stakeLoading ? (
                           <Spinner size={30} />
@@ -584,7 +598,8 @@ const HomePage = () => {
                   <div className="flex flex-row justify-center">
                     <Button
                       type="submit"
-                      className="flex flex-row items-center justify-center w-32"
+                      disabled={(parseFloat(totalRewards) === 0)}
+                      className="claim-stake flex flex-row items-center justify-center w-32"
                       onClick={() => withdrawEarnings()}
                     >
                       {withdrawLoading ? (
@@ -636,20 +651,24 @@ const HomePage = () => {
                       <span className="text-lg text-gray-400">
                         Available to unstake:{" "}
                       </span>
-                      <span className="text-white text-3xl">{(parseFloat(stakes) / 1000000000000000000).toFixed()}</span>
+                      <span className="text-white text-3xl">{userUnstakeBalance}</span>
                       <span className="text-white text-2xl ml-2">LEAD</span>
                     </div>
-                  <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
+                  <div className={`rounded-md border-2 border-primary p-2 flex justify-between items-center ${(userUnstakeBalance <= 0) ? "unstake is-disabled" : ""}`}>
                     <input
                       type="number"
                       placeholder="LEAD To Unstake"
+                      disabled={(userUnstakeBalance <= 0)}
+                      min="0"
+                      max={userUnstakeBalance}
                       value={unstakeAmount}
                       onChange={(e) => setUnstakeAmount(e.target.value)}
-                      className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
+                      className="unstake__input text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-transparent focus:text-white px-2"
                     />
                     <Button
                       onClick={() => unstake()}
-                      className="flex flex-row items-center w-48 justify-center"
+                      disabled={(userUnstakeBalance <= 0) || (unstakeAmount > userUnstakeBalance) || (isNaN(unstakeAmount)) || (unstakeAmount <= 0)}
+                      className="unstake__submit flex flex-row items-center w-48 justify-center"
                     >
                       {unstakeLoading ? (
                         <Spinner size={30} />
