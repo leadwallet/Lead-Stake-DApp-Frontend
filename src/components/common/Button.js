@@ -8,14 +8,10 @@ export default ({
   onClick,
   className,
   children,
-  disabled,
-  type,
   uppercase = true,
 }) => {
   return (
     <button
-      disabled={disabled}
-      type={type}
       onClick={onClick}
       className={cx(
         className,
