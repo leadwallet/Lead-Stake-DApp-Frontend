@@ -286,7 +286,7 @@ const HomePage = () => {
       return;
     }
     setUnstakeLoading(true);
-    const actual = unstakeAmount.value * (10 ** 18);
+    const actual = unstakeAmount * (10 ** 18);
     const arg = fromExponential(actual);
     try {
       await leadStake.methods
