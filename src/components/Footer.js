@@ -126,14 +126,14 @@ export default () => {
               Whitepaper
             </a>
             <a
-              href="https://leadwallet.io/en/docs/Privacy Policy.pdf"
+              href="https://www.leadwallet.io/en/docs/Privacy Policy.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
               Privacy Policy
             </a>
             <a
-              href="https://leadwallet.io/en/docs/Terms of Service.pdf"
+              href="https://www.leadwallet.io/en/docs/Terms of Service.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -143,7 +143,7 @@ export default () => {
         </div>
         <div className="footer-copyright text-center py-3 text-white">
         <div fluid>
-          &copy; {new Date().getFullYear()} Copyright: <a href="#"> Lead Cyber Service Limited </a>
+          &copy; {new Date().getFullYear()} Copyright: <a href="#"> Lead Cyber Services Limited </a>
         </div>
       </div>
       </footer>
