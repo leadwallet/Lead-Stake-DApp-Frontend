@@ -42,7 +42,7 @@ export default () => {
     <header className="container px-4 mx-auto py-4">
       <div className="flex flex-row justify-between items-center relative">
         <a
-          href="https://leadwallet.io"
+          href="https://www.leadwallet.io"
           className="logo flex flex-row items-center"
         >
           <img
@@ -66,7 +66,7 @@ export default () => {
               "transition duration-500 ease-in-out delay-500 py-4",
               clicked ? "opacity-100" : "opacity-0"
             )}
-            href="https://leadwallet.io/aboutus"
+            href="https://www.leadwallet.io/aboutus"
           >
             About Us
           </a>
@@ -75,7 +75,7 @@ export default () => {
               "transition duration-500 ease-in-out delay-500 py-4",
               clicked ? "opacity-100" : "opacity-0"
             )}
-            href="https://leadwallet.io/token"
+            href="https://www.leadwallet.io/token"
           >
             The Token
           </a>
@@ -84,7 +84,7 @@ export default () => {
               "transition duration-500 ease-in-out delay-500 py-4",
               clicked ? "opacity-100" : "opacity-0"
             )}
-            href="https://leadwallet.io/team"
+            href="https://www.leadwallet.io/team"
           >
             Team
           </a>
@@ -93,7 +93,7 @@ export default () => {
               "transition duration-500 ease-in-out delay-500 py-4",
               clicked ? "opacity-100" : "opacity-0"
             )}
-            href="https://leadwallet.io/contactus"
+            href="https://www.leadwallet.io/contactus"
           >
             Contact Us
           </a>

@@ -96,16 +96,16 @@ export default () => {
           </div> */}
           <div className="text-white leading-7 text-xs cursor-pointer flex flex-col">
             <a
-              href="https://leadwallet.io/aboutus"
+              href="https://www.leadwallet.io/aboutus"
               className="font-Montserrat-ExtraBold uppercase"
             >
               About Us
             </a>
             {/* <div>Project</div> */}
-            <a href="https://leadwallet.io/contactus">Contact Us</a>
-            <a href="https://leadwallet.io/team">Team</a>
+            <a href="https://www.leadwallet.io/contactus">Contact Us</a>
+            <a href="https://www.leadwallet.io/team">Team</a>
             {/* <div>Ecosystem</div> */}
-            <a href="https://leadwallet.io/token">The Token</a>
+            <a href="https://www.leadwallet.io/token">The Token</a>
           </div>
           {/* <div className="text-white leading-7 text-xs cursor-pointer">
             <div className="font-Montserrat-ExtraBold uppercase">Solutions</div>
@@ -119,7 +119,7 @@ export default () => {
               Documentation
             </div>
             <a
-              href="https://leadwallet.io/en/docs/White Paper v1_0_2.pdf"
+              href="https://www.leadwallet.io/en/docs/White Paper v1_0_2.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
