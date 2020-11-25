@@ -411,7 +411,8 @@ const HomePage = () => {
                         <a href="https://immunebytes.com/" target="_blank" className="text-blue-500">
                           Immune Bytes
                         </a>. Keep in mind that security audits don't fully eliminate all 
-                              possible security risks. Use our staking page at your own risk
+                              possible security risks. Use our staking page at your own risk. <br />
+                              <span className="text-blue-500">Note</span> The Stake Rewards can be reduced without prior warning, stakers are advised to claim their rewards daily.
                       </div>
                     </div>
                   </div>
