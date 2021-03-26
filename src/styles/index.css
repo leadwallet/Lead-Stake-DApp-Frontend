@@ -181,4 +181,25 @@ body {
   stroke-width: 6;
 }
 
+#toggler {
+  color: #D01961;
+  font-size: 24px;
+  background-color: white;
+  margin: 12px;
+  padding: 4px 32px;
+  border-radius: 5px;
+}
+
+#toggler :active {
+  color: white;
+  font-size: 24px;
+  background-color: #D01961;
+  margin: 12px;
+  padding: 4px 32px;
+  border-radius: 5px;
+}
+
+#controls {
+  margin: 32px
+}
 @tailwind utilities;
