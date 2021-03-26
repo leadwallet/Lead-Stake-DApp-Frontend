@@ -9,8 +9,9 @@ import { initWeb3 } from "../utils.js";
 import LeadStake from "../contracts/LeadStake.json";
 import ERC20 from "../contracts/ERC20.json";
 import fromExponential from "from-exponential";
+import {Link} from "react-router-dom";
+const HomePage = (props) => {
 
-const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const [stakeLoading, setStakeLoading] = useState(false);
   const [unstakeLoading, setUnstakeLoading] = useState(false);
@@ -365,7 +366,11 @@ const HomePage = () => {
         <div className="container mx-auto pb-18 px-4 force-height">
           {!accounts && (
             <div className="w-full py-6 text-center">
-              
+                <div style={{ textAlign: "center", marginTop: "1em" }}>
+                  <div id='controls' >
+                  <Link  id='toggler' to='/bsc' >Switch To Binance Chain</  Link>
+                  </div>
+                </div>
               <Button
                 className="w-full md:w-2/5 text-2xl flex flex-row justify-center mx-auto"
                 uppercase={false}
@@ -411,7 +416,8 @@ const HomePage = () => {
                         <a href="https://immunebytes.com/" target="_blank" className="text-blue-500">
                           Immune Bytes
                         </a>. Keep in mind that security audits don't fully eliminate all 
-                              possible security risks. Use our staking page at your own risk
+                              possible security risks. Use our staking page at your own risk. <br />
+                              <span className="text-blue-500">Note</span> The Stake Rewards can be reduced without prior warning, stakers are advised to claim their rewards daily.
                       </div>
                     </div>
                   </div>
