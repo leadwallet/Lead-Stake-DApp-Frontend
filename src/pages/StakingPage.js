@@ -366,11 +366,11 @@ const HomePage = (props) => {
         <div className="container mx-auto pb-18 px-4 force-height">
           {!accounts && (
             <div className="w-full py-6 text-center">
-               <div style={{ textAlign: "center", marginTop: "1em" }}>
-    <div id='controls' >
-    <Link  id='toggler' to='/bsc' >Ethereum chain</  Link>
-    </div>
-    </div>
+                <div style={{ textAlign: "center", marginTop: "1em" }}>
+                  <div id='controls' >
+                  <Link  id='toggler' to='/bsc' >Ethereum chain</  Link>
+                  </div>
+                </div>
               <Button
                 className="w-full md:w-2/5 text-2xl flex flex-row justify-center mx-auto"
                 uppercase={false}
