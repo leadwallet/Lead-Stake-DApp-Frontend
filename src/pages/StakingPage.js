@@ -368,7 +368,7 @@ const HomePage = (props) => {
             <div className="w-full py-6 text-center">
                 <div style={{ textAlign: "center", marginTop: "1em" }}>
                   <div id='controls' >
-                  <Link  id='toggler' to='/bsc' >Ethereum chain</  Link>
+                  <Link  id='toggler' to='/bsc' >Switch To Binance Chain</  Link>
                   </div>
                 </div>
               <Button

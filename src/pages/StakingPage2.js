@@ -76,7 +76,7 @@ const HomePage = () => {
     const leadStake = new web3.eth.Contract(
       LeadStake.abi,
       "0x86ffdd2431b78685eb32df30cdf03ec627eafcdb"
-    ); //mainnet adddress for staking dapp
+    ); //mainnet address for staking dapp
     const totalStaked = await leadStake.methods.totalStaked().call();
     const minStake = await leadStake.methods.minimumStakeValue().call();
     const stakingTax = await leadStake.methods.stakingTaxRate().call();
@@ -374,7 +374,7 @@ const HomePage = () => {
           {!accounts && (
             <div className="w-full py-6 text-center">
                  <div id='controls'>
-        <Link id='toggler' to='/' >Binance chain</  Link>
+        <Link id='toggler' to='/' >Switch To Ethereum Chain</  Link>
 
     </div>
               <Button
