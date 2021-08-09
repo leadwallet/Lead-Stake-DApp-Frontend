@@ -340,7 +340,7 @@ const HomePage = () => {
 
           <div className="my-2">
             Thanks for your support and feel free to{" "}
-            <a href="https://leadwallet.io/contactus" className="text-blue-500">
+            <a href="https://www.leadwallet.io/contact" className="text-blue-500">
               contact us
             </a>
           </div>
