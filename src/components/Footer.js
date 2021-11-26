@@ -119,21 +119,21 @@ export default () => {
               Documentation
             </div>
             <a
-              href="https://www.leadwallet.io/en/docs/White Paper v1_0_2.pdf"
+              href="https://www.leadwallet.io/pdf/Lead Wallet Whitepaper 1_0_2.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
               Whitepaper
             </a>
             <a
-              href="https://www.leadwallet.io/en/docs/Privacy Policy.pdf"
+              href="https://www.leadwallet.io/privacy-policy"
               target="_blank"
               rel="noopener noreferrer"
             >
               Privacy Policy
             </a>
             <a
-              href="https://www.leadwallet.io/en/docs/Terms of Service.pdf"
+              href="https://www.leadwallet.io/pdf/Terms of Service.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
