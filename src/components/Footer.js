@@ -130,7 +130,7 @@ export default () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Privacy Policy1
+              Privacy Policy
             </a>
             <a
               href="https://leadwallet.io/pdf/Terms%20of%20Service.pdf"
