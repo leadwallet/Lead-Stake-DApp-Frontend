@@ -381,7 +381,7 @@ const HomePage = (props) => {
               </Button>
 
               <div className="text-white text-center mt-6 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold">
-              <h1>LEAD STAKING</h1>
+              <h1>LEAD STAKING PAGE</h1>
               </div>
               <div className="w-full md:w-3/6 justify-center mx-auto mt-6">  
                 <Card title="Rules">
