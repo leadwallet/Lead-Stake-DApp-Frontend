@@ -340,7 +340,7 @@ const HomePage = () => {
 
           <div className="my-2">
             Thanks for your support and feel free to{" "}
-            <a href="https://leadwallet.io/contactus" className="text-blue-500">
+            <a href="https://www.leadwallet.io/contact" className="text-blue-500">
               contact us
             </a>
           </div>
@@ -387,7 +387,7 @@ const HomePage = () => {
               </Button>
 
               <div className="text-white text-center mt-6 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold">
-                <h1>LEAD STAKING</h1>
+                <h1>LEAD STAKING PAGE</h1>
               </div>
               <div className="w-full md:w-3/6 justify-center mx-auto mt-6">
                 <Card title="Rules">

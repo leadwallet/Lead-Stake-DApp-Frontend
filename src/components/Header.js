@@ -66,7 +66,7 @@ export default () => {
               "transition duration-500 ease-in-out delay-500 py-4",
               clicked ? "opacity-100" : "opacity-0"
             )}
-            href="https://www.leadwallet.io/aboutus"
+            href="https://www.leadwallet.io/about"
           >
             About Us
           </a>
@@ -93,7 +93,7 @@ export default () => {
               "transition duration-500 ease-in-out delay-500 py-4",
               clicked ? "opacity-100" : "opacity-0"
             )}
-            href="https://www.leadwallet.io/contactus"
+            href="https://www.leadwallet.io/contact"
           >
             Contact Us
           </a>
