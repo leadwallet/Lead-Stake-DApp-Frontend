@@ -126,14 +126,14 @@ export default () => {
               Whitepaper
             </a>
             <a
-              href="https://www.leadwallet.io/privacy-policy"
+              href="https://leadwallet.io/privacy-policy"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Privacy Policy
+              Privacy Policy1
             </a>
             <a
-              href="https://www.leadwallet.io/pdf/Terms of Service.pdf"
+              href="https://leadwallet.io/pdf/Terms%20of%20Service.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
