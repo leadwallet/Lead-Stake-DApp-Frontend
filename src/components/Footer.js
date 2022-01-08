@@ -105,7 +105,7 @@ export default () => {
             <a href="https://www.leadwallet.io/contact">Contact Us</a>
             <a href="https://www.leadwallet.io/team">Team</a>
             {/* <div>Ecosystem</div> */}
-            <a href="https://www.leadwallet.io/token">The Token</a>
+            <a href="https://www.leadwallet.io/token">The Token2</a>
           </div>
           {/* <div className="text-white leading-7 text-xs cursor-pointer">
             <div className="font-Montserrat-ExtraBold uppercase">Solutions</div>
